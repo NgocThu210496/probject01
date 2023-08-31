@@ -1,0 +1,7 @@
+.bg-dark {
+    --bs-bg-opacity: 1;
+    background-color: darkred!important;;
+}
+.form-outline{
+    margin: 40px 0px !important;
+}

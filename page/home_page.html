@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Link Bootstrap.css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <!-- Link icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- link css -->
+    <link rel="stylesheet" href="../css/home_page.css">
+    <title>home_page</title>
+
+</head>
+
+<body>
+    <header class="bg-light">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <div class="">
+                <img src="../img/Logo-Rikkei.png" alt="Logo" height="40">
+                <div class="align-self-center" style="margin-left: 100px;">
+                    <span>Để nông dân biết Code</span>
+                </div>
+            </div>
+            <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
+            <button class="btn btn-danger">Đăng Xuất</button>
+        </div>
+    </header>
+
+    <div class="container mt-4">
+        <div class="row">
+            <nav class="col-md-3">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <a class="text-decoration-none" id="homePagethu"
+                            onclick="navigate('page1')">Bảng điều khiển</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a  class="text-decoration-none active" id="courseManagement"
+                            onclick="navigate('page2')">Quản lý khóa học</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a  class="text-decoration-none" id="classManagement"
+                            onclick="navigate('page3')">Quản lý lớp học</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="text-decoration-none" id="studentManagement">Quản lý sinh viên</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" class="text-decoration-none" id="accountManagement">Quản lý tài khoản</a>
+                    </li>
+                </ul>
+            </nav>
+            <main class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Thống kê khoá học</th>
+                                    <td scope="col">Số khóa học</td>
+                                    <th scope="col" id="cntCourse"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" rowspan="4">Thống kê lớp học</th>
+                                    <td>Số lớp học</td>
+                                    <th scope="col" id="cntClass"></th>
+
+                                <tr>
+                                    <!-- <th scope="row">Thống kê lớp học</th> -->
+                                    <td>Số lớp đang hoạt động</td>
+                                    <th scope="col" id="cntClassActive"></th>
+                                </tr>
+                                <tr>
+                                    <!-- <th scope="row">Thống kê lớp học</th> -->
+                                    <td>Số lớp đã kết tdúc</td>
+                                    <th scope="col" id="cntClassFinal"></th>
+                                </tr>
+                                <tr>
+                                    <!-- <th scope="row">Thống kê lớp học</th> -->
+                                    <td>Số lớp đang chờ</td>
+                                    <th scope="col" id="cntClassPending"></th>
+                                </tr>
+
+                                <!--  -->
+                                <tr>
+                                    <th scope="row" rowspan="5">Thống kê sinh viên</th>
+                                    <td>Tổng số SV</td>
+                                    <th scope="col" id="cntCourse">5</th>
+                                </tr>
+                                <tr>
+                                    <td>Số SV chờ lớp</td>
+                                    <th scope="col" id="cntCourse">5</th>
+                                </tr>
+                                <tr>
+                                    <td>Số SV đang học</td>
+                                    <th scope="col" id="cntCourse">5</th>
+                                </tr>
+                                <tr>
+                                    <td>Số SV bảo lưu/đình chỉ</td>
+                                    <th scope="col" id="cntCourse">5</th>
+                                </tr>
+                                <tr>
+                                    <td>Số SV tốt nghiệp</td>
+                                    <th scope="col" id="cntCourse">5</th>
+                                </tr>
+                                
+                               
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Add more columns here -->
+                </div>
+            </main>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p>Copyright Rikkei Academy @2023.</p>
+        </div>
+    </footer>
+    <!--Link Bootstrap-Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="../js/home_page.js"></script>
+    <!-- <script src="../page/class_page.html"></script> -->
+</body>
+
+</html>
