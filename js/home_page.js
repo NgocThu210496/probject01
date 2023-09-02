@@ -1,33 +1,34 @@
-//   document.getElementById()
-//   //1. lấy các thông tin có trong localstorage trong hệ thống
-//   let userSystem=JSON.parse(localStorage.getItem("userSystem"))||[];
+const btnLogOut=document.getElementById("btnLogOut");
+btnLogOut.addEventListener("click",function(){
+  //xoa item trong localStoreage có id 
+  localStorage.removeItem("userLogin");
+  //chuyển về trang login
+  window.location.href="login_page.html"
 
-
-// const homePagethu =document.getElementById("homePagethu");
-// homePagethu.addEventListener("click",function(){
-//     window.location.href="home_page.html";
+})
+//c2
+//   let result = JSON.parse(localStorage.getItem("userSystem")); 
+//   result.forEach(function(element){
+//     element.email = "";
+//     element.password="";
+//   })
+//   localStorage.setItem("userSystem", JSON.stringify(result));
 // })
 
-// const courseManagement =document.getElementById("courseManagement");
-// courseManagement.addEventListener("click",function(){
-//     window.location.href="course_page.html";
-// })
+//1. lấy các thông tin có trong localstorage trong hệ thống
+  let userSystem=JSON.parse(localStorage.getItem("userSystem"))||[];
+  //thong ke 
+  function statistical(){
+    const statisticalCourse=0;
+    const statisticsClass=0;
+    const statisticsClassActive=0;
+    const statisticsClassFinal=0;
+    const statisticsClassPending=0;
+    //forEach() 
+    //+)Dùng để duyệt qua từng phần tử của mảng (= for)
+    //+)Trả về undefined nếu như không tìm thấy giá tri thõa mãn điều kiện đặt ra 
+    studentManagement.forEach(element => { 
+      
+    });
+  }
 
-// const classManagement =document.getElementById("classManagement");
-// classManagement.addEventListener("click",function(){
-//     window.location.href="class_page.html";
-// })
-
-function navigate(page) {
-    if (page == 'page1') {
-        return window.location.pathname = 'home_page.html';
-        
-    } 
-    if (page == 'page2') {
-     return   window.location.pathname = 'course_page.html';
-    } 
-    if (page == 'page3') {
-      return  window.location.pathname = 'class_page.html';
-    } 
-    console.log("chay vao chua?")
-}

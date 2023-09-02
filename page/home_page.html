@@ -25,7 +25,7 @@
                 </div>
             </div>
             <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
-            <button class="btn btn-danger">Đăng Xuất</button>
+            <button class="btn btn-danger" id="btnLogOut">Đăng Xuất</button>
         </div>
     </header>
 
@@ -34,22 +34,19 @@
             <nav class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a class="text-decoration-none" id="homePagethu"
-                            onclick="navigate('page1')">Bảng điều khiển</a>
+                        <a href="home_page.html" class="text-decoration-none" id="homePage">Bảng điều khiển</a>
                     </li>
                     <li class="list-group-item">
-                        <a  class="text-decoration-none active" id="courseManagement"
-                            onclick="navigate('page2')">Quản lý khóa học</a>
+                        <a href="course_page.html" class="text-decoration-none active" id="courseManagement">Quản lý khóa học</a>
                     </li>
                     <li class="list-group-item">
-                        <a  class="text-decoration-none" id="classManagement"
-                            onclick="navigate('page3')">Quản lý lớp học</a>
+                        <a href="class_page.html" class="text-decoration-none" id="classManagement">Quản lý lớp học</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none" id="studentManagement">Quản lý sinh viên</a>
+                        <a href="student_page.html" class="text-decoration-none" id="studentManagement">Quản lý sinh viên</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none" id="accountManagement">Quản lý tài khoản</a>
+                        <a href="account_page.html" class="text-decoration-none" id="accountManagement">Quản lý tài khoản</a>
                     </li>
                 </ul>
             </nav>
@@ -58,59 +55,59 @@
                     <div class="col-md-6">
                         <table class="table">
                             <thead>
+                                <!--begin Thống kê khoá học  -->
                                 <tr>
                                     <th scope="col">Thống kê khoá học</th>
                                     <td scope="col">Số khóa học</td>
-                                    <th scope="col" id="cntCourse"></th>
+                                    <th scope="col" id="statisticalCourse"></th>
                                 </tr>
+                                <!-- End Thống kê khoá học -->
                             </thead>
                             <tbody>
+                                <!--Begin Thống kê lớp học -->
                                 <tr>
                                     <th scope="row" rowspan="4">Thống kê lớp học</th>
                                     <td>Số lớp học</td>
-                                    <th scope="col" id="cntClass"></th>
-
+                                    <th scope="col" id="statisticsClass"></th>
+                                </tr>
                                 <tr>
-                                    <!-- <th scope="row">Thống kê lớp học</th> -->
                                     <td>Số lớp đang hoạt động</td>
-                                    <th scope="col" id="cntClassActive"></th>
+                                    <th scope="col" id="statisticsClassActive"></th>
                                 </tr>
                                 <tr>
-                                    <!-- <th scope="row">Thống kê lớp học</th> -->
-                                    <td>Số lớp đã kết tdúc</td>
-                                    <th scope="col" id="cntClassFinal"></th>
+                                    <td>Số lớp đã kết thúc</td>
+                                    <th scope="col" id="statisticsClassFinal"></th>
                                 </tr>
                                 <tr>
-                                    <!-- <th scope="row">Thống kê lớp học</th> -->
+                                  
                                     <td>Số lớp đang chờ</td>
-                                    <th scope="col" id="cntClassPending"></th>
+                                    <th scope="col" id="statisticsClassPending"></th>
                                 </tr>
 
-                                <!--  -->
+                                <!--End Thống kê lớp học -->
+                                <!-- Begin Thống kê sinh viên -->
                                 <tr>
                                     <th scope="row" rowspan="5">Thống kê sinh viên</th>
                                     <td>Tổng số SV</td>
-                                    <th scope="col" id="cntCourse">5</th>
+                                    <th scope="col" id="statisticsStudent">5</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV chờ lớp</td>
-                                    <th scope="col" id="cntCourse">5</th>
+                                    <th scope="col" id="statisticsStudentPending">5</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV đang học</td>
-                                    <th scope="col" id="cntCourse">5</th>
+                                    <th scope="col" id="statisticStudyLearn">5</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV bảo lưu/đình chỉ</td>
-                                    <th scope="col" id="cntCourse">5</th>
+                                    <th scope="col" id="statisticReserve">5</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV tốt nghiệp</td>
-                                    <th scope="col" id="cntCourse">5</th>
+                                    <th scope="col" id="statisticGraduate">5</th>
                                 </tr>
-                                
-                               
-                                
+                                <!--End Thống kê sinh viên -->
                             </tbody>
                         </table>
                     </div>
@@ -129,7 +126,7 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="../js/home_page.js"></script>
-    <!-- <script src="../page/class_page.html"></script> -->
+    <!-- <script src="../js/demo_data.js"></script> -->
 </body>
 
 </html>

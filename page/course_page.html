@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../css/home_page.css">
+    <!--  -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+   
+
+    <link rel="stylesheet" href="../css/account_page.css">
     <title>home_page</title>
 
 </head>
+
 <body>
     <header class="bg-light">
         <div class="container d-flex justify-content-between align-items-center py-3">
             <div class="">
                 <img src="../img/Logo-Rikkei.png" alt="Logo" height="40">
                 <div class="align-self-center" style="margin-left: 100px;">
-                    <span >Để nông dân biết Code</span>
+                    <span>Để nông dân biết Code</span>
                 </div>
             </div>
             <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
@@ -29,19 +35,22 @@
             <nav class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none">Bảng điều khiển</a>
+                        <a href="home_page.html" class="text-decoration-none" id="homePage">Bảng điều khiển</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none" id="courseManagement">Quản lý khóa học</a>
+                        <a href="course_page.html" class="text-decoration-none active" id="courseManagement">Quản lý
+                            khóa học</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none">Quản lý lớp học</a>
+                        <a href="class_page.html" class="text-decoration-none" id="classManagement">Quản lý lớp học</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none">Quản lý sinh viên</a>
+                        <a href="student_page.html" class="text-decoration-none" id="studentManagement">Quản lý sinh
+                            viên</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#" class="text-decoration-none">Quản lý tài khoản</a>
+                        <a href="account_page.html" class="text-decoration-none" id="accountManagement">Quản lý tài
+                            khoản</a>
                     </li>
                 </ul>
             </nav>
@@ -52,16 +61,71 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-4">
-                        <button class="btn btn-primary">Thêm Mới</button>
+                    <div class="col-md-2">
+                        <!-- button Insert -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Thêm Mới
+                        </button>
                     </div>
-                    <div class="col-md-4">
+
+                    <!-- Begin modal insert-->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Thêm Mới Khoá Học</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form id="courseInfo">
+                                        <div class="form-group">
+                                            <label for="maKhoaHoc">Mã Khoá Học <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="courseId">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tenKhoaHoc">Tên Khoá Học<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="courseName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thoiGianHoc">Thời Gian Học<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="courseTime">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="trangThai">Trạng Thái:</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="status"id="active" checked value="true">
+                                                <label class="form-check-label" for="hoatDong">Active</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="status"id="inActive" value="false">
+                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button form="courseInfo" type="submit" class="btn btn-primary" id="btnSubmit">Save</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End modal insert-->
+
+                    <div class="col-md-3">
                         <input type="text" class="form-control" placeholder="Tìm kiếm">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-secondary">Tìm Kiếm</button>
+                        <button class="btn btn-primary">Tìm Kiếm</button>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-5 d-inline-block">
                         <label for="sort">Sắp Xếp:</label>
                         <select class="form-control" id="sort">
                             <option value="asc">Tăng Dần</option>
@@ -74,28 +138,47 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">STT</th>
-                                    <th scope="col">Họ Tên</th>
-                                    <th scope="col">Tuổi</th>
-                                    <th scope="col">Địa Chỉ</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Số Điện Thoại</th>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Mã khóa học</th>
+                                    <th scope="col">Tên khóa học</th>
+                                    <th scope="col">Thời gian (giờ)</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="listCourse">
                                 <!-- Table rows here -->
+                                <!-- <tr>
+                                    <td>1</td>
+                                    <td>RA01</td>
+                                    <td>JAVA</td>
+                                    <td>100</td>
+                                    <td>Hoat dong</td>
+                                    <td>
+                                        <i class="fa-regular fa-pen-to-square" id="editCourse"
+                                            style="padding-left: 20px"></i>
+                                        <i class="fa-regular fa-trash-can" id="deteteCourse"
+                                            style="padding-left: 10px"></i>
+                                    </td>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-md-12 text-center">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Trang Trước</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <ul class="pagination" id="listPage">
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                            <!-- <li class="page-item"><a class="page-link" href="#" id="preview">Preview</a></li> -->
+                            <!-- <li class="page-item active"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Trang Sau</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                            <!-- <li class="page-item"><a class="page-link" href="#">Next</a></li> -->
+                            <li class="page-item">
+                                <span class="page-link">Next</span>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -110,6 +193,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
-    <!-- <script src="../js/home_page.js"></script> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../js/course_page.js"></script>
 </body>
+
 </html>

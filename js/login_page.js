@@ -23,6 +23,8 @@ const password=document.getElementById("password").value;
     }else{
         //kiem tra status cua user (hoat dong/khoa)
         if(userSystem[indexUserLogin].status){
+            //set thông tin ngươì nhập đẩy vào local
+            localStorage.setItem("userLogin",email);
              // dieu huwong sang trang 
             //user dang hoat dong thi ->home_page.html
             window.location.href="home_page.html";
