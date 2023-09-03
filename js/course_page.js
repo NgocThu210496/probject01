@@ -225,3 +225,13 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
     createCourse();
 
 });
+
+//logout
+const btnLogOut=document.getElementById("btnLogOut");
+btnLogOut.addEventListener("click",function(){
+  //xoa item trong localStoreage có id 
+  localStorage.removeItem("userLogin");
+  //chuyển về trang login
+  window.location.href="login_page.html"
+
+})

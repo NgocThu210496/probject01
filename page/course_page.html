@@ -26,7 +26,26 @@
                 </div>
             </div>
             <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
-            <button class="btn btn-danger">Đăng Xuất</button>
+            <button class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#logout">Đăng Xuất</button>
+            <!-- Begin modal logout -->
+            <div class="modal" tabindex="-1" id="logout"aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Xác nhận đăng xuất</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Bạn muốn đăng xuất khỏi hệ thống?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="btnLogOut" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+             <!-- End modal logout -->
         </div>
     </header>
 
@@ -199,19 +218,27 @@
                       </div>
                     <!-- End Modal Delete -->
 
+                    <!-- Begin Seaarch -->
                     <div class="col-md-3">
                         <input type="text" id="courseNameSearch" class="form-control" placeholder="Tìm kiếm">
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-primary" id="btnSearch">Tìm Kiếm</button>
                     </div>
+                    <!-- End Seaarch -->
+
+                    <!--Begin Arrange -->
                     <div class="col-md-5 d-inline-block">
                         <label for="sort">Sắp Xếp:</label>
-                        <select class="form-control" id="sort">
-                            <option value="asc">Tăng Dần</option>
-                            <option value="desc">Giảm Dần</option>
+                        <select class="form-control" id="sort" onchange="handSortCourse()">
+                            <option value="">Lựa chọn</option>
+                            <option value="courseNameASC">Course Name ASC</option>
+                            <option value="courseNameDESC">Course Name DESC</option>
+                            <option value="priorityASC">Priority ASC</option>
+                            <option value="priorityDESC">Priority DESC</option>
                         </select>
                     </div>
+                     <!--End Arrange -->
                 </div>
                 <div class="row">
                     <div class="col-md-12">

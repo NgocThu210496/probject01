@@ -11,15 +11,6 @@ btnLogOut.addEventListener("click",function(){
   window.location.href="login_page.html"
 
 })
-//c2
-//   let result = JSON.parse(localStorage.getItem("userSystem")); 
-//   result.forEach(function(element){
-//     element.email = "";
-//     element.password="";
-//   })
-//   localStorage.setItem("userSystem", JSON.stringify(result));
-// })
-
 //1. lấy các thông tin có trong localstorage trong hệ thống
   let userSystem=JSON.parse(localStorage.getItem("userSystem"))||[];
   //thong ke 
