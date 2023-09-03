@@ -8,8 +8,6 @@ const listPage = document.getElementById("listPage");
 
 //Định nghĩa số dữ liệu trên trang
 const recordSperPage = 3;
-// Mặc định là chế độ "Create"
-const action = "Create";
 // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
 var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 // Định nghĩa số dữ liệu trên mỗi trang
@@ -26,8 +24,8 @@ function renderData(page) {
     for (let index = 1; index <= totalPage; index++) {
         pagePagination.innerHTML +=
             `
-           <li class="page-item"><a class="page-link" href="javascript:renderData(${index})">${index}</a></li>
-       `;
+            <li class="page-item"><a class="page-link" href="javascript:renderData(${index})">${index}</a></li>
+            `;
     }
 
     // 2. Render dữ liệu của page trên table
@@ -37,7 +35,7 @@ function renderData(page) {
         indexTo = studentManagement.length;
     }
     listCourse.innerHTML = "";
-        for (let index = indexFrom; index < indexTo; index++) {
+    for (let index = indexFrom; index < indexTo; index++) {
         const status = studentManagement[index].status ? 'Active' : 'Inactive';
         //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
         listCourse.innerHTML += `
@@ -56,35 +54,36 @@ function renderData(page) {
     }
 
 }
-function openDeleteCourse(index){
+function openDeleteCourse(index) {
     const deleteCourseData = studentManagement[index];
-   document.getElementById("deleteCourseId").innerHTML=deleteCourseData.courseId;
-   document.getElementById("deleteCourseName").innerHTML=deleteCourseData.courseName;
-   $("#deleteCourse").modal('show')
+    document.getElementById("deleteCourseId").innerHTML = deleteCourseData.courseId;
+    document.getElementById("deleteCourseName").innerHTML = deleteCourseData.courseName;
+    $("#deleteCourse").modal('show')
 
 }
 //fuction delete
-let confirmDeleteButton=document.getElementById("confirmDeleteButton");
-confirmDeleteButton.addEventListener("click",function(){
- 
-    let deleteCourseId =document.getElementById("deleteCourseId").innerHTML;
-    studentManagement=studentManagement.filter(element =>element.courseId!=deleteCourseId)
-     // Lưu đè studentManagement vào localStorage
-     localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+let confirmDeleteButton = document.getElementById("confirmDeleteButton");
+confirmDeleteButton.addEventListener("click", function () {
+
+    let deleteCourseId = document.getElementById("deleteCourseId").innerHTML;
+    studentManagement = studentManagement.filter(element => element.courseId != deleteCourseId)
+    // Lưu đè studentManagement vào localStorage
+    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
     renderData(1);
 })
-function openEditCourse(index){
-     // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
-        const courseData = studentManagement[index];
-        document.getElementById("editCourseId").value = courseData.courseId;
-        document.getElementById("editCourseName").value = courseData.courseName;
-        document.getElementById("editCourseTime").value = courseData.courseTime;
+function openEditCourse(index) {
+    // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
+    const courseData = studentManagement[index];
+    document.getElementById("editCourseId").value = courseData.courseId;
+    document.getElementById("editCourseName").value = courseData.courseName;
+    document.getElementById("editCourseTime").value = courseData.courseTime;
 
-     // Hiển thị modal chỉnh sửa
-        // document.getElementById("editModal").style.display = "block";
-        //cách hiển thị modal
-        $("#editModal").modal('show');
+    // Hiển thị modal chỉnh sửa
+    // document.getElementById("editModal").style.display = "block";
+    //cách hiển thị modal
+    $("#editModal").modal('show');
 }
+//tính tổng số trang
 function getTotalPage() {
     return Math.ceil(studentManagement.length / recordSperPage)
 
@@ -107,7 +106,7 @@ function createCourse() {
     // Lưu đè studentManagement vào localStorage
     localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
 
-    resetFormCourseInfo();
+    resetForm();
     renderData(1);
 }
 // click vào edit thì hiển thị all data trên form
@@ -128,21 +127,20 @@ function initUpdate() {
     //Không cho phép sửa mã courseId form khi cập nhật - readonly
     document.getElementById("courseId").readOnly = true;
     //Chuyển action thành update
-    action = "Update";
-
+    resetFormCourseInfo()
 }
 //update
 function updateCourse() {
-    
+
     // 1. Lấy thông tin khoá học trên form
     let courseUpdate = getDataCourse();
     // 2. Cập nhật thông tin course vào studentManagement
-    let indexUpdate = getCourseId(studentManagement,courseUpdate.courseId);
+    let indexUpdate = getCourseId(studentManagement, courseUpdate.courseId);
     studentManagement[indexUpdate] = courseUpdate;
     // 3. Lưu mảng vào local storage
     localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
-    resetFormCourseInfo();
-  }
+    resetForm();
+}
 
 for (let index = 0; index < studentManagement.length; index++) {
     const editButton = document.getElementById(`btnCourseEdit_${index}`);
@@ -157,8 +155,7 @@ function getCourseId(studentManagement, courseId) {
         }
     }
     return -1;// Trả về -1 nếu không tìm thấy courseId tương ứng trong mảng.
- }
-
+}
 
 // Các function validateCourseId
 function validateCourseId(courseId) {
@@ -184,14 +181,16 @@ function validateCourseName(courseName) {
     document.getElementById("courseName").style.backgroundColor = "";
     return true;
 }
+
 //fuction reset ô input
-function resetFormCourseInfo() {
-    document.getElementById("editCourseId").value = "";
-    document.getElementById("editCourseName").value = "";
-    document.getElementById("editCourseTime").value = "";
-    document.getElementById("activeEdit").checked = true;
+function resetForm() {
+    document.getElementById("courseId").value = "";
+    document.getElementById("courseName").value = "";
+    document.getElementById("courseTime").value = "";
+    document.getElementById("status").checked = true;
 
 }
+
 //lấy thông tin course trên form và trả về đối tượng course đó
 function getDataCourse() {
     let courseId = document.getElementById("editCourseId").value;
@@ -199,12 +198,13 @@ function getDataCourse() {
     let courseTime = document.getElementById("editCourseTime").value;
     let status = document.getElementById("activeEdit").checked;
     // let status = document.querySelector("input[type='radio']:checked").value;
-    let course = { courseId, courseName, courseTime,status };
+    let course = { courseId, courseName, courseTime, status };
     return course;
-  }
+}
 
 // Thêm sự kiện click cho nút Submit
 document.getElementById("btnSubmit").addEventListener("click", function (event) {
     event.preventDefault();
     createCourse();
+
 });
