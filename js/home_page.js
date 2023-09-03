@@ -1,3 +1,8 @@
+//1. lấy các thông tin có trong localstorage trong hệ thống
+let studentManagement=JSON.parse(localStorage.getItem("studentManagement"))||[];
+ const statisticalCourse= document.getElementById("statisticalCourse");
+ statisticalCourse.innerHTML=studentManagement.length;
+
 const btnLogOut=document.getElementById("btnLogOut");
 btnLogOut.addEventListener("click",function(){
   //xoa item trong localStoreage có id 

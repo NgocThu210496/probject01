@@ -1,0 +1,26 @@
+
+#pagePagination{
+    display: flex;
+}
+.form-control {
+    display: inline-block !important;
+    width: 220px;
+    display: inline-block;
+    
+}
+.form-group{
+    margin-bottom: 15px;
+}
+.form-group>label>span{
+    color: red;
+}
+.form-group>.form-control{
+    margin-left: 30px;
+    width: 250px;
+}
+.form-check {
+    padding-left: 4.7em !important;
+}
+.form-check-inline {
+    margin-right: 0rem !important;
+}
