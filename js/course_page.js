@@ -15,6 +15,23 @@ const recordsPerPage = 3;
 // Chạy hàm renderData khi trang được tải
 window.onload = renderData(1);
 
+//search 
+let btnSearch = document.getElementById("btnSearch");
+btnSearch.addEventListener("click", function(){
+    // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
+var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+    //Lấy dữ liệu nhập trên ô tìm kiếm
+    let courseNameSearch = document.getElementById("courseNameSearch").value;
+    // tìm các danh mục có tên chứa courseNameSearch
+    //hàm filter:để lọc danh sách studentManagement dựa trên điều kiện tìm kiếm.
+    //listCourseSearch được sử dụng để chứa kết quả tìm kiếm mới,
+    let listCourseSearch = studentManagement.filter(element => element.courseName.includes(courseNameSearch));
+    // 4. render data
+    renderData(listCourseSearch);
+    console.log("muon lay cai gi" ,courseNameSearch)
+});
+
+
 // Function thực hiện render dữ liệu theo trang
 function renderData(page) {
     // 1. Render danh sách trang
