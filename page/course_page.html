@@ -138,7 +138,7 @@
                                     <form id="editCourseInfo">
                                         <div class="form-group">
                                             <label for="maKhoaHoc">Mã Khoá Học</label>
-                                            <input type="text" class="form-control" id="editCourseId">
+                                            <input type="text" class="form-control" id="editCourseId" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="tenKhoaHoc">Tên Khoá Học</label>
@@ -151,7 +151,7 @@
                                         <div class="form-group">
                                             <label for="trangThai">Trạng Thái:</label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="active"
+                                                <input class="form-check-input" type="radio" name="status" id="activeEdit"
                                                     checked value="true">
                                                 <label class="form-check-label" for="hoatDong">Active</label>
                                             </div>
@@ -168,8 +168,8 @@
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button form="editCourseInfo" type="submit" class="btn btn-primary"
-                                        id="btnSubmitEdit"data-dismiss="modal" onclick="updateElementCourse()">Update</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        id="btnSubmitEdit" onclick="updateCourse()">Update</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
@@ -178,16 +178,25 @@
                     <!-- End Modal Edit -->
 
                     <!-- Begin Modal Delete -->
-                    <div id="deleteModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" id="closeDeleteModal">&times;</span>
-                            <h2>Xóa khóa học</h2>
-                            <p>Bạn có chắc chắn muốn xóa khóa học có mã: <span id="deleteCourseId"></span> - <span
+                    <div class="modal"id="deleteCourse">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Xóa khóa học</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc chắn muốn xóa khóa học có mã: <span id="deleteCourseId">
+                                </span> - <span
                                     id="deleteCourseName"></span> không?</p>
-                            <button type="button" id="confirmDeleteButton">Xác nhận xóa</button>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="confirmDeleteButton">Delete</button>
+                              <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                            </div>
+                          </div>
                         </div>
-                    </div>
-
+                      </div>
                     <!-- End Modal Delete -->
 
                     <div class="col-md-3">
