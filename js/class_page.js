@@ -53,26 +53,26 @@ function renderDataClass(page) {
     if (indexTo > studentManagement.length) {
         indexTo = studentManagement.length;
     }
-    listClass.innerHTML = "";
-    for (let index = indexFrom; index < indexTo; index++) {
-        const status = studentManagement[index].status ? 'Active' : 'Inactive';
-        //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
-        listClass.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${studentManagement[index].insertClassId}</td>
-                <td>${studentManagement[index].insertClassName}</td>
-                <td>${studentManagement[index].insertClassTeacher}</td>
-                <td>${studentManagement[index].insertClassNumber}</td>
-                <td>${studentManagement[index].insertClassDescribe}</td>
-                <td>${status}</td>
-                <td>
-                    <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
-                    <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
-                </td>
-            </tr>
-        `;
-    }
+    // listClass.innerHTML = "";
+    // for (let index = indexFrom; index < indexTo; index++) {
+    //     const status = studentManagement[index].status ? 'Active' : 'Inactive';
+    //     //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
+    //     listClass.innerHTML += `
+    //         <tr>
+    //             <td>${index + 1}</td>
+    //             <td>${studentManagement[index].insertClassId}</td>
+    //             <td>${studentManagement[index].insertClassName}</td>
+    //             <td>${studentManagement[index].insertClassTeacher}</td>
+    //             <td>${studentManagement[index].insertClassNumber}</td>
+    //             <td>${studentManagement[index].insertClassDescribe}</td>
+    //             <td>${status}</td>
+    //             <td>
+    //                 <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
+    //                 <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
+    //             </td>
+    //         </tr>
+    //     `;
+    // }
 
 }
 function openDeleteClass(index) {
@@ -131,7 +131,7 @@ function createClass() {
     // Lưu đè studentManagement vào localStorage
     localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
 
-    resetForm();
+    resetFormClass();
     renderDataClass(1);
 }
 // click vào edit thì hiển thị all data trên form
@@ -166,7 +166,7 @@ function updateClass() {
     studentManagement[indexUpdate] = courseUpdate;
     // 3. Lưu mảng vào local storage
     localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
-    resetForm();
+    resetFormClass();
 }
 
 for (let index = 0; index < studentManagement.length; index++) {
@@ -216,17 +216,17 @@ function resetFormClass() {
     document.getElementById("insertClassTeacher").value = "";
     document.getElementById("insertClassNumber").value = "";
     document.getElementById("insertClassDescribe").value = "";
-    document.getElementById("status").checked = true;
+    document.getElementById("active").checked = true;
 
 }
 
 function renderClassData() {
     let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
     studentManagement.forEach(courseElement => {
-     
-        courseElement.arrClass.forEach((classElement,index) => {
+        listClass.innerHTML ="";
+        courseElement.arrClass?.forEach((classElement,index) => {
 
-            console.log("classElement",classElement);
+            // console.log("classElement",classElement.className);
             listClass.innerHTML += `
             <tr>
                 <td>${index + 1}</td>

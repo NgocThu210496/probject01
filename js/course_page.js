@@ -18,17 +18,36 @@ window.onload = renderData(1);
 //search 
 let btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", function(){
-    // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
-    //Lấy dữ liệu nhập trên ô tìm kiếm
-    let courseNameSearch = document.getElementById("courseNameSearch").value;
-    // tìm các danh mục có tên chứa courseNameSearch
-    //hàm filter:để lọc danh sách studentManagement dựa trên điều kiện tìm kiếm.
-    //listCourseSearch được sử dụng để chứa kết quả tìm kiếm mới,
-    let listCourseSearch = studentManagement.filter(element => element.courseName.includes(courseNameSearch));
-    // 4. render data
-    renderData(listCourseSearch);
-    // console.log("muon lay cai gi" ,courseNames)
+    const searchInputValue = document.getElementById("courseNameSearch"); 
+    let searchListCourse = [];
+    studentManagement.filter(function(element){
+        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
+        let valueOfStudentManagement = (element.courseName)?.toLowerCase();
+        if(valueOfStudentManagement?.includes(valueOfSearchInput)){
+            searchListCourse.push(element);
+        }
+        let listCourse=document.getElementById("listCourse");
+        listCourse.innerHTML="";
+        searchListCourse.forEach((element,index)=>{
+            listCourse.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${element.courseId}</td>
+                <td>${element.courseName}</td>
+                <td>${element.courseTime}</td>
+                <td>Search</td>
+                <td>
+                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                </td>
+            </tr>
+        `;
+
+        })
+        
+
+    })
+    
 });
 
 
@@ -203,7 +222,7 @@ function resetForm() {
     document.getElementById("courseId").value = "";
     document.getElementById("courseName").value = "";
     document.getElementById("courseTime").value = "";
-    document.getElementById("status").checked = true;
+    document.getElementById("active").checked = true;
 
 }
 
