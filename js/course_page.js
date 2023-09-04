@@ -131,7 +131,7 @@ function initUpdate() {
     // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
     const studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
     // Lấy thông tin danh mục cần cập nhật
-    let index = getCourseId(studentManagement, courseId);//Chỉ số phần tử sinh viên cần cập nhật
+    let index = getClassId(studentManagement, courseId);//Chỉ số phần tử sinh viên cần cập nhật
     // Hiển thị thông tin danh mục cần cập nhật lên Input Form
     document.getElementById("courseId").value = studentManagement[index].courseId;
     document.getElementById("courseName").value = studentManagement[index].courseName;
@@ -143,8 +143,7 @@ function initUpdate() {
     }
     //Không cho phép sửa mã courseId form khi cập nhật - readonly
     document.getElementById("courseId").readOnly = true;
-    //Chuyển action thành update
-    resetFormCourseInfo()
+   
 }
 //update
 function updateCourse() {

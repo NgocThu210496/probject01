@@ -1,9 +1,9 @@
-const insertClassId = document.getElementById("insertClassId");
-const insertClassName = document.getElementById("insertClassName");
-const insertClassTeacher = document.getElementById("insertClassTeacher");
-const insertClassNumber = document.getElementById("insertClassNumber");
-const insertClassDescribe = document.getElementById("insertClassDescribe");
-const active = document.getElementById("active");
+let insertClassId = document.getElementById("insertClassId");
+let insertClassName = document.getElementById("insertClassName");
+let insertClassTeacher = document.getElementById("insertClassTeacher");
+let insertClassNumber = document.getElementById("insertClassNumber");
+let insertClassDescribe = document.getElementById("insertClassDescribe");
+let active = document.getElementById("active");
 
 const listClass = document.getElementById("listClass");
 const listPageClass = document.getElementById("listPageClass");
@@ -11,17 +11,15 @@ const listPageClass = document.getElementById("listPageClass");
 //Định nghĩa số dữ liệu trên trang
 const recordSperPageClass = 4;
 // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+// var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 // Định nghĩa số dữ liệu trên mỗi trang
 const recordsPerPageClass = 4;
-// Chạy hàm renderData khi trang được tải
-window.onload = renderDataClass(1);
+
 
 // //search 
 // let btnSearch = document.getElementById("btnSearch");
 // btnSearch.addEventListener("click", function(){
 //     // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-// var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 //     //Lấy dữ liệu nhập trên ô tìm kiếm
 //     let courseNameSearch = document.getElementById("courseNameSearch").value;
 //     // tìm các danh mục có tên chứa courseNameSearch
@@ -33,9 +31,11 @@ window.onload = renderDataClass(1);
 //     // console.log("muon lay cai gi" ,courseNames)
 // });
 
+let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 
 // Function thực hiện render dữ liệu theo trang
 function renderDataClass(page) {
+
     // 1. Render danh sách trang
     const totalPage = getTotalPageClass();
     const pagePaginationClass = document.getElementById("pagePaginationClass");
@@ -76,9 +76,9 @@ function renderDataClass(page) {
 
 }
 function openDeleteClass(index) {
-    const deleteCourseData = studentManagement[index];
-    document.getElementById("deleteClassId").innerHTML = deleteCourseData.courseId;
-    document.getElementById("deleteClassName").innerHTML = deleteCourseData.courseName;
+    const deleteClasseData = studentManagement[index];
+    document.getElementById("deleteClassId").innerHTML = deleteClasseData.insertClassId;
+    document.getElementById("deleteClassName").innerHTML = deleteClasseData.insertClassName;
     $("#deleteCalss").modal('show')
 
 }
@@ -95,9 +95,11 @@ confirmClassDeleteButton.addEventListener("click", function () {
 function openEditClass(index) {
     // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
     const classData = studentManagement[index];
-    document.getElementById("editCourseId").value = courseData.courseId;
-    document.getElementById("editCourseName").value = courseData.courseName;
-    document.getElementById("editCourseTime").value = courseData.courseTime;
+    document.getElementById("editClassId").value = classData.insertClassId;
+    document.getElementById("editClassName").value = classData.insertClassName;
+    document.getElementById("editClassTeacher").value = classData.insertClassTeacher;
+    document.getElementById("editClassNumber").value = classData.insertClassNumber;
+    document.getElementById("editClassDescribe").value = classData.insertClassDescribe;
 
     // Hiển thị modal chỉnh sửa
     // document.getElementById("editModal").style.display = "block";
@@ -137,26 +139,28 @@ function initUpdateClass() {
     // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
     const studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
     // Lấy thông tin danh mục cần cập nhật
-    let index = getCourseId(studentManagement, courseId);//Chỉ số phần tử sinh viên cần cập nhật
+    let index = getClassId(studentManagement, insertClassId);//Chỉ số phần tử sinh viên cần cập nhật
     // Hiển thị thông tin danh mục cần cập nhật lên Input Form
-    document.getElementById("courseId").value = studentManagement[index].courseId;
-    document.getElementById("courseName").value = studentManagement[index].courseName;
-    document.getElementById("courseTime").value = studentManagement[index].courseTime;
+    document.getElementById("insertClassId").value = studentManagement[index].insertClassId;
+    document.getElementById("insertClassName").value = studentManagement[index].insertClassName;
+    document.getElementById("insertClassTeacher").value = studentManagement[index].insertClassTeacher;
+    document.getElementById("insertClassNumber").value = studentManagement[index].insertClassNumber;
+    document.getElementById("insertClassDescribe").value = studentManagement[index].insertClassDescribe;
     if (studentManagement[index].status == "active") {
         document.getElementById("active").checked = true;
     } else {
         document.getElementById("inActive").checked = true;
     }
     //Không cho phép sửa mã courseId form khi cập nhật - readonly
-    document.getElementById("courseId").readOnly = true;
+    document.getElementById("insertClassId").readOnly = true;
     //Chuyển action thành update
-    resetFormCourseInfo()
+    resetFormClass()
 }
 //update
-function updateCourse() {
+function updateClass() {
 
     // 1. Lấy thông tin khoá học trên form
-    let courseUpdate = getDataCourse();
+    let classUpdate = getDataClass();
     // 2. Cập nhật thông tin course vào studentManagement
     let indexUpdate = getCourseId(studentManagement, courseUpdate.courseId);
     studentManagement[indexUpdate] = courseUpdate;
@@ -166,14 +170,14 @@ function updateCourse() {
 }
 
 for (let index = 0; index < studentManagement.length; index++) {
-    const editButton = document.getElementById(`btnClassEdit_${index}`);
-    const deleteButton = document.getElementById(`btnClassDelete_${index}`)
+    const editCLassButton = document.getElementById(`btnClassEdit_${index}`);
+    const deleteClassButton = document.getElementById(`btnClassDelete_${index}`)
 
 };
 // Hàm lấy thông tin danh mục theo mã danh mục
-function getCourseId(studentManagement, courseId) {
+function getClassId(studentManagement, insertClassId) {
     for (let index = 0; index < studentManagement.length; index++) {
-        if (studentManagement[index].courseId == courseId) {
+        if (studentManagement[index].insertClassId == insertClassId) {
             return index;
         }
     }
@@ -181,32 +185,32 @@ function getCourseId(studentManagement, courseId) {
 }
 
 // Các function validateClassId
-function validateClassId(courseId) {
-    let indexFind = studentManagement.findIndex(element => element.courseId == courseId);
+function validateClassId(insertClassId) {
+    let indexFind = studentManagement.findIndex(element => element.insertClassId == insertClassId);
     if (indexFind >= 0) {
         //Đã tồn tại mã danh mục trong studentManagement
-        document.getElementById("courseId").style.backgroundColor = "yellow";
+        document.getElementById("insertClassId").style.backgroundColor = "yellow";
         alert("Mã danh mục đã tồn tại");
         return false;
     }
-    document.getElementById("courseId").style.backgroundColor = "";
+    document.getElementById("insertClassId").style.backgroundColor = "";
     return true;
 }
 
 //Function validateClassName
-function validateClassName(courseName) {
-    let indexFind = studentManagement.findIndex(element => element.courseName == courseName);
+function validateClassName(insertClassName) {
+    let indexFind = studentManagement.findIndex(element => element.insertClassName == insertClassName);
     if (indexFind >= 0) {
-        document.getElementById("courseName").style.backgroundColor = "yellow";
+        document.getElementById("insertClassName").style.backgroundColor = "yellow";
         alert("Tên danh mục đã tồn tại");
         return false;
     }
-    document.getElementById("courseName").style.backgroundColor = "";
+    document.getElementById("insertClassName").style.backgroundColor = "";
     return true;
 }
 
 //fuction reset ô input
-function resetForm() {
+function resetFormClass() {
     document.getElementById("insertClassId").value = "";
     document.getElementById("insertClassName").value = "";
     document.getElementById("insertClassTeacher").value = "";
@@ -216,30 +220,65 @@ function resetForm() {
 
 }
 
-//lấy thông tin course trên form và trả về đối tượng course đó
-function getDataCourse() {
-    let courseId = document.getElementById("editCourseId").value;
-    let courseName = document.getElementById("editCourseName").value;
-    let courseTime = document.getElementById("editCourseTime").value;
-    let status = document.getElementById("activeEdit").checked;
-    // let status = document.querySelector("input[type='radio']:checked").value;
-    let course = { courseId, courseName, courseTime, status };
-    return course;
+function renderClassData() {
+    let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+    studentManagement.forEach(courseElement => {
+     
+        courseElement.arrClass.forEach((classElement,index) => {
+
+            console.log("classElement",classElement);
+            listClass.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${classElement.classId}</td>
+                <td>${classElement.className}</td>
+                <td>${classElement.lecturer}</td>
+                <td>${classElement.description}</td>
+                <td>${classElement.totalNumber}</td>
+                <td>${classElement.status}</td>
+                <td>
+                    <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
+                    <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
+                </td>
+            </tr>`
+        ;
+
+        })
+
+    });
+
 }
+renderClassData();
+
+//lấy thông tin course trên form và trả về đối tượng course đó
+// function getDataClass() {
+//     let insertClassId = document.getElementById("editClassId").value;
+//     let insertClassName = document.getElementById("editClassName").value;
+//     let insertClassTeacher = document.getElementById("editClassTeacher").value;
+//     let insertClassNumber = document.getElementById("editClassNumber").value;
+//     let insertClassDescribe = document.getElementById("editClassDescribe").value;
+//     let status = document.getElementById("activeEditClass").checked;
+//     // let status = document.querySelector("input[type='radio']:checked").value;
+//     let getClass = { insertClassId, insertClassName, insertClassTeacher, insertClassNumber,insertClassDescribe,status };
+//     return getClass;
+// }
 
 // Thêm sự kiện click cho nút Submit
-document.getElementById("btnSubmit").addEventListener("click", function (event) {
+document.getElementById("btnClassSubmit").addEventListener("click", function (event) {
     event.preventDefault();
     createClass();
 
 });
 
 //logout
-const btnLogOut=document.getElementById("btnLogOut");
-btnLogOut.addEventListener("click",function(){
-  //xoa item trong localStoreage có id 
-  localStorage.removeItem("userLogin");
-  //chuyển về trang login
-  window.location.href="login_page.html"
+const btnLogOut = document.getElementById("btnLogOut");
+btnLogOut.addEventListener("click", function () {
+    //xoa item trong localStoreage có id 
+    localStorage.removeItem("userLogin");
+    //chuyển về trang login
+    window.location.href = "login_page.html"
 
 })
+
+// Chạy hàm renderData khi trang được tải
+window.onload = renderDataClass(1);
