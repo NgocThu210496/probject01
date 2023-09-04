@@ -279,6 +279,6 @@ btnLogOut.addEventListener("click", function () {
     window.location.href = "login_page.html"
 
 })
-
+ //ghi bay
 // Chạy hàm renderData khi trang được tải
 window.onload = renderDataClass(1);
