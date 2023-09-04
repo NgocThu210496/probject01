@@ -28,7 +28,7 @@ var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) ||
     let listCourseSearch = studentManagement.filter(element => element.courseName.includes(courseNameSearch));
     // 4. render data
     renderData(listCourseSearch);
-    console.log("muon lay cai gi" ,courseNameSearch)
+    // console.log("muon lay cai gi" ,courseNames)
 });
 
 
