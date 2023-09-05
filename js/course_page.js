@@ -12,8 +12,7 @@ const recordSperPage = 3;
 var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 // Định nghĩa số dữ liệu trên mỗi trang
 const recordsPerPage = 3;
-// Chạy hàm renderData khi trang được tải
-window.onload = renderData(1);
+
 
 //search 
 let btnSearch = document.getElementById("btnSearch");
@@ -244,6 +243,8 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
 
 });
 
+// Chạy hàm renderData khi trang được tải
+window.onload = renderData(1);
 //logout
 const btnLogOut=document.getElementById("btnLogOut");
 btnLogOut.addEventListener("click",function(){

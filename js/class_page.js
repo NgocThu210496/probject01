@@ -5,33 +5,64 @@ let insertClassNumber = document.getElementById("insertClassNumber");
 let insertClassDescribe = document.getElementById("insertClassDescribe");
 let active = document.getElementById("active");
 
+const editClassId = document.getElementById("editClassId");
+const editClassName = document.getElementById("editClassName");
+const editClassTeacher = document.getElementById("editClassTeacher");
+const editClassNumber = document.getElementById("editClassNumber");
+const editClassDescribe = document.getElementById("editClassDescribe"); 
+const status = document.getElementById("activeEditClass"); 
+
+
 const listClass = document.getElementById("listClass");
 const listPageClass = document.getElementById("listPageClass");
+
 
 //Định nghĩa số dữ liệu trên trang
 const recordSperPageClass = 4;
 // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-// var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
+let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
 // Định nghĩa số dữ liệu trên mỗi trang
 const recordsPerPageClass = 4;
 
 
-// //search 
-// let btnSearch = document.getElementById("btnSearch");
-// btnSearch.addEventListener("click", function(){
-//     // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-//     //Lấy dữ liệu nhập trên ô tìm kiếm
-//     let courseNameSearch = document.getElementById("courseNameSearch").value;
-//     // tìm các danh mục có tên chứa courseNameSearch
-//     //hàm filter:để lọc danh sách studentManagement dựa trên điều kiện tìm kiếm.
-//     //listCourseSearch được sử dụng để chứa kết quả tìm kiếm mới,
-//     let listCourseSearch = studentManagement.filter(element => element.courseName.includes(courseNameSearch));
-//     // 4. render data
-//     renderDataClass(listCourseSearch);
-//     // console.log("muon lay cai gi" ,courseNames)
-// });
+//search 
+let classNameSearch = document.getElementById("classNameSearch");
+classNameSearch.addEventListener("click", function(){
+    const searchInputValue = document.getElementById("courseNameSearch"); 
+    let searchListClass = [];
+    classesManagement.filter(function(element){
+        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
+        let valueOfClassesManagement = (element.insertClassId)?.toLowerCase();
+        if(valueOfClassesManagement?.includes(valueOfSearchInput)){
+            searchListClass.push(element);
+        }
+        let listClass=document.getElementById("listClass");
+        listClass.innerHTML="";
+        searchListClass.forEach((element,index)=>{
+            listClass.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${element.insertClassId}</td>
+                <td>${element.insertClassName}</td>
+                <td>${element.insertClassTeacher}</td>
+                <td>${element.insertClassNumber}</td>
+                <td>${element.insertClassDescribe}</td>
+                <td>Search</td>
+                <td>
+                    <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                </td>
+            </tr>
+        `;
 
-let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+        })
+        
+
+    })
+    
+});
+
 
 // Function thực hiện render dữ liệu theo trang
 function renderDataClass(page) {
@@ -93,17 +124,12 @@ confirmClassDeleteButton.addEventListener("click", function () {
     renderDataClass(1);
 })
 function openEditClass(index) {
-    // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
-    const classData = studentManagement[index];
+    const classData = classesManagement[index];
     document.getElementById("editClassId").value = classData.insertClassId;
     document.getElementById("editClassName").value = classData.insertClassName;
     document.getElementById("editClassTeacher").value = classData.insertClassTeacher;
     document.getElementById("editClassNumber").value = classData.insertClassNumber;
     document.getElementById("editClassDescribe").value = classData.insertClassDescribe;
-
-    // Hiển thị modal chỉnh sửa
-    // document.getElementById("editModal").style.display = "block";
-    //cách hiển thị modal
     $("#editClassModal").modal('show');
 }
 //tính tổng số trang
@@ -126,13 +152,13 @@ function createClass() {
     if (!validateClassId(newClass.insertClassId) || !validateClassName(newClass.insertClassName)) {
         return;
     }
-    //Thêm newClass vào studentManagement
-    studentManagement.push(newClass);
-    // Lưu đè studentManagement vào localStorage
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+    //Thêm newClass vào classesManagement
+    classesManagement.push(newClass);
+    // Lưu đè classesManagement vào localStorage
+    localStorage.setItem("classesManagement", JSON.stringify(classesManagement));
 
     resetFormClass();
-    renderDataClass(1);
+    renderClassData();
 }
 // click vào edit thì hiển thị all data trên form
 function initUpdateClass() {
@@ -157,16 +183,31 @@ function initUpdateClass() {
     resetFormClass()
 }
 //update
-function updateClass() {
+function updateClass(event) {
+    // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
+    event.preventDefault();
+    const newUpdateClass = {
+        insertClassId: editClassId.value,
+        insertClassName: editClassName.value,
+        insertClassTeacher: editClassTeacher.value,
+        insertClassNumber: editClassNumber.value,
+        insertClassDescribe: editClassDescribe.value,
+        status: true,
+    };
+    classesManagement.forEach(function(classes){
+       if(classes.insertClassId == newUpdateClass.insertClassId){
+        classes.insertClassName = newUpdateClass.insertClassName, 
+        classes.insertClassTeacher = newUpdateClass.insertClassTeacher, 
+        classes.insertClassNumber = newUpdateClass.insertClassNumber, 
+        classes.insertClassDescribe = newUpdateClass.insertClassDescribe, 
+        classes.status = true
+       }
+    })
 
-    // 1. Lấy thông tin khoá học trên form
-    let classUpdate = getDataClass();
-    // 2. Cập nhật thông tin course vào studentManagement
-    let indexUpdate = getCourseId(studentManagement, courseUpdate.courseId);
-    studentManagement[indexUpdate] = courseUpdate;
-    // 3. Lưu mảng vào local storage
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
-    resetFormClass();
+    localStorage.setItem("classesManagement", JSON.stringify(classesManagement));
+    // window.onload = renderDataClass(1);
+    
+
 }
 
 for (let index = 0; index < studentManagement.length; index++) {
@@ -221,29 +262,25 @@ function resetFormClass() {
 }
 
 function renderClassData() {
-    let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
-    studentManagement.forEach(courseElement => {
-        listClass.innerHTML ="";
-        courseElement.arrClass?.forEach((classElement,index) => {
-
-            // console.log("classElement",classElement.className);
-            listClass.innerHTML += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${classElement.classId}</td>
-                <td>${classElement.className}</td>
-                <td>${classElement.lecturer}</td>
-                <td>${classElement.description}</td>
-                <td>${classElement.totalNumber}</td>
-                <td>${classElement.status}</td>
-                <td>
-                    <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
-                    <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
-                </td>
-            </tr>`
-        ;
-
-        })
+    let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
+    listClass.innerHTML = "";
+    classesManagement.forEach((courseElement, index) => {
+        
+        listClass.innerHTML += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${courseElement.insertClassId}</td>
+            <td>${courseElement.insertClassName}</td>
+            <td>${courseElement.insertClassTeacher}</td>
+            <td>${courseElement.insertClassDescribe}</td>
+            <td>${courseElement.insertClassNumber}</td>
+            <td>${courseElement.status}</td>
+            <td>
+                <button class="btn btn-primary" data-bs-target="editClassModal" id="btnClassEdit_${index}" onClick="openEditClass('${index}')">Edit</button>
+                <button class="btn btn-danger" id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
+            </td>
+        </tr>`
+        
 
     });
 

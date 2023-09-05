@@ -119,7 +119,7 @@ let studentManagement = [
         ]
     }
 ]
-
+localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
 //Thông tin đăng nhập
 //item: userLogin:email
 //Thông tin tài khoản hệ thống
@@ -143,13 +143,8 @@ let userSystem = [
         status: false//true: hoạt động - false: Đang bị khóa
     }
 ]
+localStorage.setItem("userSystem", JSON.stringify(userSystem));
 
-///////////
-let submit=document.getElementById("submit");
-submit.addEventListener("click",function(){
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
-    localStorage.setItem("userSystems", JSON.stringify(userSystems));
-})
 
 
 

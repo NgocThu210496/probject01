@@ -165,7 +165,7 @@
                                     <form id="editClassInfo">
                                         <div class="form-group">
                                             <label for="maKhoaHoc">Mã Lớp Học</label>
-                                            <input type="text" class="form-control" id="editClassId" readonly>
+                                            <input type="text" class="form-control" id="editClassId" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="tenKhoaHoc">Tên Lớp Học</label>
@@ -203,7 +203,7 @@
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button form="editClassInfo" type="submit" class="btn btn-primary"
-                                        id="btnSubmitEditClass" onclick="updateClass()">Update</button>
+                                        id="btnSubmitEditClass" onclick="updateClass(event)">Update</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>

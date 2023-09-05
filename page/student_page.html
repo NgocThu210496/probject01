@@ -103,7 +103,335 @@
             </main>
         </div> 
     </div>
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-whi<!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+                integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+            <!--  -->
+            <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
+        
+        
+            <link rel="stylesheet" href="../css/class_page.css">
+            <title>home_page</title>
+        
+        </head>
+        
+        <body>
+            <header class="bg-light">
+                <div class="container d-flex justify-content-between align-items-center py-3">
+                    <div class="">
+                        <img src="../img/Logo-Rikkei.png" alt="Logo" height="40">
+                        <div class="align-self-center" style="margin-left: 100px;">
+                            <span>Để nông dân biết Code</span>
+                        </div>
+                    </div>
+                    <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
+                    <button class="btn btn-danger"data-bs-toggle="modal" data-bs-target="#logout">Đăng Xuất</button>
+                    <!-- Begin modal logout -->
+                    <div class="modal" tabindex="-1" id="logout"aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title">Xác nhận đăng xuất</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <p>Bạn muốn đăng xuất khỏi hệ thống?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" id="btnLogOut" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                     <!-- End modal logout -->
+                </div>
+            </header>
+        
+            <div class="container mt-4">
+                <div class="row">
+                    <nav class="col-md-3">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="home_page.html" class="text-decoration-none" id="homePage">Bảng điều khiển</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="course_page.html" class="text-decoration-none active" id="courseManagement">Quản lý
+                                    khóa học</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="class_page.html" class="text-decoration-none" id="classManagement">Quản lý lớp học</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="student_page.html" class="text-decoration-none" id="studentManagement">Quản lý sinh
+                                    viên</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="account_page.html" class="text-decoration-none" id="accountManagement">Quản lý tài
+                                    khoản</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <main class="col-md-9">
+                        <div class="row mb-3">
+                            <div class="col-md-12 text-center">
+                                <h2>QUẢN LÝ SINH VIÊN</h2>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-evenly">
+                            <div class="col-md-2">
+                                <!-- button Insert -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalClassInsert">
+                                    Thêm Mới
+                                </button>
+                            </div>
+        
+                            <!-- Begin modal insert-->
+                            <div class="modal" id="modalClassInsert">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Thêm Mới Lớp Học</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <form id="courseInfo">
+                                                <div class="form-group">
+                                                    <label for="maKhoaHoc">Mã lớp Học <span>(*)</span></label>
+                                                    <input type="text" class="form-control" id="insertClassId">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tenKhoaHoc">Tên lớp Học<span>(*)</span></label>
+                                                    <input type="text" class="form-control" id="insertClassName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Giảng viên<span>(*)</span></label>
+                                                    <input type="text" class="form-control" id="insertClassTeacher">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Sĩ số<span>(*)</span></label>
+                                                    <input type="text" class="form-control" id="insertClassNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Mô tả<span>(*)</span></label>
+                                                    <input type="text" class="form-control" id="insertClassDescribe">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="trangThai">Trạng Thái:</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="active"
+                                                            checked value="true">
+                                                        <label class="form-check-label" for="hoatDong">Active</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="inActive"
+                                                            value="false">
+                                                        <label class="form-check-label" for="khongHoatDong">InActive</label>
+                                                    </div>
+        
+                                                </div>
+                                            </form>
+                                        </div>
+        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button form="classInfo" type="submit" class="btn btn-primary"
+                                                id="btnClassSubmit">Save</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- End modal insert-->
+        
+                            <!-- Begin Modal Edit -->
+                            
+                            <div class="modal" id="editClassModal">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Chỉnh sửa thông tin lớp học</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <form id="editClassInfo">
+                                                <div class="form-group">
+                                                    <label for="maKhoaHoc">Mã Lớp Học</label>
+                                                    <input type="text" class="form-control" id="editClassId" readonly>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="tenKhoaHoc">Tên Lớp Học</label>
+                                                    <input type="text" class="form-control" id="editClassName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Giảng viên</label>
+                                                    <input type="text" class="form-control" id="editClassTeacher">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Sỉ số</label>
+                                                    <input type="text" class="form-control" id="editClassNumber">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="thoiGianHoc">Mô tả</label>
+                                                    <input type="text" class="form-control" id="editClassDescribe">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="trangThai">Trạng Thái:</label>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="activeEditClass"
+                                                            checked value="true">
+                                                        <label class="form-check-label" for="hoatDong">Active</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="status" id="inActiveClass"
+                                                            value="false">
+                                                        <label class="form-check-label" for="khongHoatDong">InActive</label>
+                                                    </div>
+        
+                                                </div>
+                                            </form>
+                                        </div>
+        
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button form="editClassInfo" type="submit" class="btn btn-primary"
+                                                id="btnSubmitEditClass" onclick="updateClass()">Update</button>
+                                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <!-- End Modal Edit -->
+        
+                            <!-- Begin Modal Delete -->
+                            <div class="modal"id="deleteCalss">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title">Xóa lớp học</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Bạn có chắc chắn muốn xóa lớp học có mã: <span id="deleteClassId">
+                                        </span> - <span
+                                            id="deleteClassName"></span> không?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmClassDeleteButton">Delete</button>
+                                      <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            <!-- End Modal Delete -->
+        
+                            <!-- Begin Seaarch -->
+                            <div class="col-md-3">
+                                <input type="text" id="classNameSearch" class="form-control" placeholder="Tìm kiếm">
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="btnClassSearch">Tìm Kiếm</button>
+                            </div>
+                            <!-- End Seaarch -->
+        
+                            <!--Begin Arrange -->
+                            <div class="col-md-5 d-inline-block">
+                                <label for="sort">Sắp Xếp:</label>
+                                <select class="form-control" id="sort" onchange="handSortCourse()">
+                                    <option value="">Lựa chọn</option>
+                                    <option value="courseNameASC">Class Name ASC</option>
+                                    <option value="courseNameDESC">Class Name DESC</option>
+                                    <option value="priorityASC">Priority ASC</option>
+                                    <option value="priorityDESC">Priority DESC</option>
+                                </select>
+                            </div>
+                             <!--End Arrange -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Mã SV</th>
+                                            <th scope="col">Tên SV</th>
+                                            <th scope="col">Năm sinh</th>
+                                            <th scope="col">Địa chỉ</th>
+                                            <th scope="col">….</th>
+                                            <th scope="col">Trạng thái</th>
+                                            <th scope="col">Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listStudent">
+                                        <!-- Table rows here -->
+                                        <!-- <tr>
+                                            <td>1</td>
+                                            <td>RA01</td>
+                                            <td>JAVA</td>
+                                            <td>100</td>
+                                            <td>Hoat dong</td>
+                                            <td>
+                                                <i class="fa-regular fa-pen-to-square" id="editCourse"
+                                                    style="padding-left: 20px"></i>
+                                                <i class="fa-regular fa-trash-can" id="deteteCourse"
+                                                    style="padding-left: 10px"></i>
+                                            </td>
+                                        </tr> -->
+        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Begin link page -->
+                        <div class="row mt-3">
+                            <div class="col-md-12 text-center">
+                                <ul class="pagination" id="listPageClass">
+                                    <li class="page-item">
+                                        <span class="page-link">Previous</span>
+                                    </li>
+                                    <li class="page-item" id="pagePaginationClass"></li>
+                                    <li class="page-item">
+                                        <span class="page-link">Next</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--End link page -->
+                    </main>
+                </div>
+            </div>
+            <footer class="bg-dark text-white text-center py-3">
+                <div class="container">
+                    <p>Copyright Rikkei Academy @2023.</p>
+                </div>
+            </footer>
+            
+            <script src="../js/class_page.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                crossorigin="anonymous"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+        </body>
+        
+        </html>te text-center py-3">
         <div class="container">
             <p>Copyright Rikkei Academy @2023.</p>
         </div>
