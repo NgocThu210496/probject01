@@ -235,11 +235,12 @@ function resetFormClass() {
 
 function renderClassData() {
   listClass.innerHTML = "";
+  let no = 0;
   studentManagement.forEach((courseElement) => {
     courseElement.arrClass?.forEach((classElement, index) => {
       listClass.innerHTML += `
             <tr>
-                <td>${index + 1}</td>
+                <td>${(no += 1)}</td>
                 <td>${classElement.classId}</td>
                 <td>${classElement.className}</td>
                 <td>${classElement.lecturer}</td>
