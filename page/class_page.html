@@ -105,6 +105,10 @@
                                             <input type="text" class="form-control" id="insertClassId">
                                         </div>
                                         <div class="form-group">
+                                            <label for="maKhoaHoc">Mã Khoá học <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="insertCourseId">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="tenKhoaHoc">Tên lớp Học<span>(*)</span></label>
                                             <input type="text" class="form-control" id="insertClassName">
                                         </div>
@@ -122,16 +126,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="trangThai">Trạng Thái:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="active"
-                                                    checked value="true">
-                                                <label class="form-check-label" for="hoatDong">Active</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="inActive"
-                                                    value="false">
-                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
-                                            </div>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                  <option value="1" >Đang chờ</option>
+                                                  <option value="2">Hoạt động</option>
+                                                  <option value="3">Kết thúc</option>
+                                                </select>
+                                              </div>
 
                                         </div>
                                     </form>
@@ -167,6 +168,7 @@
                                             <label for="maKhoaHoc">Mã Lớp Học</label>
                                             <input type="text" class="form-control" id="editClassId" disabled>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="tenKhoaHoc">Tên Lớp Học</label>
                                             <input type="text" class="form-control" id="editClassName">
@@ -185,16 +187,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="trangThai">Trạng Thái:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="activeEditClass"
-                                                    checked value="true">
-                                                <label class="form-check-label" for="hoatDong">Active</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="inActiveClass"
-                                                    value="false">
-                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
-                                            </div>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingEditSelect" aria-label="Floating label select example">
+                                                  <option value="1" >Đang chờ</option>
+                                                  <option value="2">Hoạt động</option>
+                                                  <option value="3">Kết thúc</option>
+                                                </select>
+                                              </div>
 
                                         </div>
                                     </form>
@@ -263,6 +262,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Mã lớp</th>
+                                    <th scope="col">Mã Khoá học</th>
                                     <th scope="col">Tên lớp</th>
                                     <th scope="col">Giảng viên</th>
                                     <th scope="col">Mô tả</th>

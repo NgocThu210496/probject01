@@ -1,7 +1,11 @@
 //1. lấy các thông tin có trong localstorage trong hệ thống
 let studentManagement=JSON.parse(localStorage.getItem("studentManagement"))||[];
+let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
  const statisticalCourse= document.getElementById("statisticalCourse");
+ const statisticsClass= document.getElementById("statisticsClass");
  statisticalCourse.innerHTML=studentManagement.length;
+ statisticsClass.innerHTML=classesManagement.length;
+
 
 const btnLogOut=document.getElementById("btnLogOut");
 btnLogOut.addEventListener("click",function(){
