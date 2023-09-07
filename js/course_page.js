@@ -34,7 +34,7 @@ btnSearch.addEventListener("click", function(){
                 <td>${element.courseId}</td>
                 <td>${element.courseName}</td>
                 <td>${element.courseTime}</td>
-                <td>Search</td>
+                <td>Active</td>
                 <td>
                     <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
@@ -196,7 +196,7 @@ function validateCourseId(courseId) {
     let indexFind = studentManagement.findIndex(element => element.courseId == courseId);
     if (indexFind >= 0) {
         //Đã tồn tại mã danh mục trong studentManagement
-        document.getElementById("courseId").style.backgroundColor = "yellow";
+        document.getElementById("courseId").style.backgroundColor = "green";
         alert("Mã danh mục đã tồn tại");
         return false;
     }
@@ -208,7 +208,7 @@ function validateCourseId(courseId) {
 function validateCourseName(courseName) {
     let indexFind = studentManagement.findIndex(element => element.courseName == courseName);
     if (indexFind >= 0) {
-        document.getElementById("courseName").style.backgroundColor = "yellow";
+        document.getElementById("courseName").style.backgroundColor = "green";
         alert("Tên danh mục đã tồn tại");
         return false;
     }

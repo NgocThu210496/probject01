@@ -1,10 +1,13 @@
 //1. lấy các thông tin có trong localstorage trong hệ thống
 let studentManagement=JSON.parse(localStorage.getItem("studentManagement"))||[];
 let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
+let student = JSON.parse(localStorage.getItem("student")) || [];
  const statisticalCourse= document.getElementById("statisticalCourse");
  const statisticsClass= document.getElementById("statisticsClass");
+ const statisticsStudent= document.getElementById("statisticsStudent");
  statisticalCourse.innerHTML=studentManagement.length;
  statisticsClass.innerHTML=classesManagement.length;
+ statisticsStudent.innerHTML=student.length;
 
 
 const btnLogOut=document.getElementById("btnLogOut");

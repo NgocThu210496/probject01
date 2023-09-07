@@ -90,7 +90,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Thêm Mới Khoá Học</h4>
+                                    <h4 class="modal-title">Thêm Mới  sinh viên</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -98,29 +98,57 @@
                                 <div class="modal-body">
                                     <form id="courseInfo">
                                         <div class="form-group">
-                                            <label for="maKhoaHoc">Mã Khoá Học <span>(*)</span></label>
-                                            <input type="text" class="form-control" id="courseId">
+                                            <label for="maKhoaHoc">Mã Sinh Viên <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="studentId">
                                         </div>
                                         <div class="form-group">
-                                            <label for="tenKhoaHoc">Tên Khoá Học<span>(*)</span></label>
-                                            <input type="text" class="form-control" id="courseName">
+                                            <label for="maKhoaHoc">Mã Lớp học <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="classId">
                                         </div>
                                         <div class="form-group">
-                                            <label for="thoiGianHoc">Thời Gian Học<span>(*)</span></label>
-                                            <input type="text" class="form-control" id="courseTime">
+                                            <label for="maKhoaHoc">Tên Sinh Viên <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="studentName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="maKhoaHoc">Năm sinh  <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="birthday">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tenKhoaHoc">Địa chỉ<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="address">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thoiGianHoc">Số điện thoại<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="phone">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thoiGianHoc">Email<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="trangThai">Giới tính:</label>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="sex" id="Nam"
+                                                    checked value="true">
+                                                <label class="form-check-label" for="hoatDong">Nam</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="sex" id="Nu"
+                                                    value="false">
+                                                <label class="form-check-label" for="khongHoatDong">Nữ</label>
+                                            </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="trangThai">Trạng Thái:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="active"
-                                                    checked value="true">
-                                                <label class="form-check-label" for="hoatDong">Active</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="inActive"
-                                                    value="false">
-                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
-                                            </div>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingEditSelect" aria-label="Floating label select example">
+                                                  <option value="1" >Đang học</option>
+                                                  <option value="2">Chờ lớp</option>
+                                                  <option value="3">Bảo lưu - Đình chỉ</option>
+                                                  <option value="4">Tốt nghiệp</option>
+                                                </select>
+                                              </div>
 
                                         </div>
                                     </form>
@@ -145,7 +173,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Chỉnh sửa thông tin khóa học</h4>
+                                    <h4 class="modal-title">Chỉnh sửa thông tin sinh viên</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -244,14 +272,16 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Mã SV</th>
+                                    <th scope="col">Mã lớp</th>
                                     <th scope="col">Tên SV</th>
                                     <th scope="col">Năm sinh</th>
                                     <th scope="col">Địa chỉ</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Trạng thái</th>
                                     <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody id="listCourse">
+                            <tbody id="listStudent">
                                 <!-- Table rows here -->
                                 <!-- <tr>
                                     <td>1</td>

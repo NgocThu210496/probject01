@@ -26,65 +26,40 @@ let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) ||
 // Định nghĩa số dữ liệu trên mỗi trang
 const recordsPerPageClass = 4;
 
-
-//search 
+//search
 let btnClassSearch = document.getElementById("btnClassSearch");
 btnClassSearch.addEventListener("click", function(){
-    const searchInputValue = document.getElementById("classNameSearch").value; 
-    let searchListClass = [];
-    const result = classesManagement.filter((element) => element.insertClassName.includes(searchInputValue));
+    const searchInputValue = document.getElementById("classNameSearch"); 
+    let searchListCourse = [];
+    classesManagement.filter(function(element){
+        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
+        let valueOfclassesManagement = (element.courseName)?.toLowerCase();
+        if(valueOfclassesManagement?.includes(valueOfSearchInput)){
+            searchListCourse.push(element);
+        }
+        let listClass=document.getElementById("listClass");
+        listClass.innerHTML="";
+        searchlistClass.forEach((element,index)=>{
+            listClass.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${element.courseId}</td>
+                <td>${element.courseName}</td>
+                <td>${element.courseTime}</td>
+                <td>Search</td>
+                <td>
+                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                </td>
+            </tr>
+        `;
 
-    // ///////
-    //  // 1. Render danh sách trang
-    //  const totalPage =  Math.ceil(result.length / recordSperPageClass);
-    //  const pagePaginationClass = document.getElementById("pagePaginationClass");
-    //  pagePaginationClass.innerHTML = "";
-    //  for (let index = 1; index <= totalPage; index++) {
-    //      pagePaginationClass.innerHTML +=
-    //          `
-    //          <li class="page-item"><a class="page-link" href="javascript:renderDataClass(${index})">${index}</a></li>
-    //          `;
-    //  }
- 
-    //  // 2. Render dữ liệu của page trên table
-    //  let indexFrom = (page - 1) * recordsPerPageClass;
-    //  let indexTo = page * recordsPerPageClass;
-    //  if (indexTo > result.length) {
-    //      indexTo = result.length;
-    //  }
-    //  listClass.innerHTML = "";
-    //  for (let index = indexFrom; index < indexTo; index++) {
-    //      var status = "";
-    //      if(result[index].status=="1"){
-    //          status="Đang chờ";
-    //      }else if(result[index].status=="2"){
-    //          status= "Hoạt động";
-    //      }
-    //      else if(result[index].status=="3"){
-    //          status= "Kết thúc";
-    //      }
-    //      //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
-    //      listClass.innerHTML += `
-    //          <tr>
-    //              <td>${index + 1}</td>
-    //              <td>${classesManagement[index].insertClassId}</td>
-    //              <td>${classesManagement[index].insertCourseId}</td>
-    //              <td>${classesManagement[index].insertClassName}</td>
-    //              <td>${classesManagement[index].insertClassTeacher}</td>
-    //              <td>${classesManagement[index].insertClassNumber}</td>
-    //              <td>${classesManagement[index].insertClassDescribe}</td>
-    //              <td>${status}</td>
-    //              <td>
-    //                  <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
-    //                  <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
-    //              </td>
-    //          </tr>
-    //      `;
-    //  }
-    // ////
+        })
+        
+
+    })
     
 });
-
 
 // Function thực hiện render dữ liệu theo trang
 function renderDataClass(page) {
@@ -157,6 +132,7 @@ confirmClassDeleteButton.addEventListener("click", function () {
 function openEditClass(index) {
     const classData = classesManagement[index];
     document.getElementById("editClassId").value = classData.insertClassId;
+    document.getElementById("editCourseId").value = classData.insertCourseId;
     document.getElementById("editClassName").value = classData.insertClassName;
     document.getElementById("editClassTeacher").value = classData.insertClassTeacher;
     document.getElementById("editClassNumber").value = classData.insertClassNumber;
@@ -213,6 +189,7 @@ function updateClass(event) {
     event.preventDefault();
     classesManagement.forEach(function(classes){
        if(classes.insertClassId == editClassId.value){
+        classes.insertCourseId == insertCourseId.value,
         classes.insertClassName = editClassName.value, 
         classes.insertClassTeacher = editClassTeacher.value, 
         classes.insertClassNumber =  editClassNumber.value, 
@@ -280,6 +257,7 @@ function resetFormClass() {
 }
 function resetFormClassEdit() {
     document.getElementById("editClassId").value = "";
+    document.getElementById("editCourseId").value = "";
     document.getElementById("editClassName").value = "";
     document.getElementById("editClassTeacher").value = "";
     document.getElementById("editClassNumber").value = "";
@@ -314,19 +292,6 @@ function renderClassData() {
 
 }
 renderClassData();
-
-//lấy thông tin course trên form và trả về đối tượng course đó
-// function getDataClass() {
-//     let insertClassId = document.getElementById("editClassId").value;
-//     let insertClassName = document.getElementById("editClassName").value;
-//     let insertClassTeacher = document.getElementById("editClassTeacher").value;
-//     let insertClassNumber = document.getElementById("editClassNumber").value;
-//     let insertClassDescribe = document.getElementById("editClassDescribe").value;
-//     let status = document.getElementById("activeEditClass").checked;
-//     // let status = document.querySelector("input[type='radio']:checked").value;
-//     let getClass = { insertClassId, insertClassName, insertClassTeacher, insertClassNumber,insertClassDescribe,status };
-//     return getClass;
-// }
 
 // Thêm sự kiện click cho nút Submit
 document.getElementById("btnClassSubmit").addEventListener("click", function (event) {
