@@ -10,8 +10,8 @@ const editClassId = document.getElementById("editClassId");
 const editClassName = document.getElementById("editClassName");
 const editClassTeacher = document.getElementById("editClassTeacher");
 const editClassNumber = document.getElementById("editClassNumber");
-const editClassDescribe = document.getElementById("editClassDescribe"); 
-const status = document.getElementById("floatingEditSelect"); 
+const editClassDescribe = document.getElementById("editClassDescribe");
+const status = document.getElementById("floatingEditSelect");
 
 
 const listClass = document.getElementById("listClass");
@@ -28,18 +28,18 @@ const recordsPerPageClass = 4;
 
 //search
 let btnClassSearch = document.getElementById("btnClassSearch");
-btnClassSearch.addEventListener("click", function(){
-    const searchInputValue = document.getElementById("classNameSearch"); 
+btnClassSearch.addEventListener("click", function () {
+    const searchInputValue = document.getElementById("classNameSearch");
     let searchListCourse = [];
-    classesManagement.filter(function(element){
-        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
+    classesManagement.filter(function (element) {
+        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase();
         let valueOfclassesManagement = (element.courseName)?.toLowerCase();
-        if(valueOfclassesManagement?.includes(valueOfSearchInput)){
+        if (valueOfclassesManagement?.includes(valueOfSearchInput)) {
             searchListCourse.push(element);
         }
-        let listClass=document.getElementById("listClass");
-        listClass.innerHTML="";
-        searchlistClass.forEach((element,index)=>{
+        let listClass = document.getElementById("listClass");
+        listClass.innerHTML = "";
+        searchlistClass.forEach((element, index) => {
             listClass.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
@@ -55,15 +55,15 @@ btnClassSearch.addEventListener("click", function(){
         `;
 
         })
-        
+
 
     })
-    
+
 });
 
 // Function thực hiện render dữ liệu theo trang
 function renderDataClass(page) {
-
+    
     // 1. Render danh sách trang
     const totalPage = getTotalPageClass();
     const pagePaginationClass = document.getElementById("pagePaginationClass");
@@ -84,13 +84,13 @@ function renderDataClass(page) {
     listClass.innerHTML = "";
     for (let index = indexFrom; index < indexTo; index++) {
         var status = "";
-        if(classesManagement[index].status=="1"){
-            status="Đang chờ";
-        }else if(classesManagement[index].status=="2"){
-            status= "Hoạt động";
+        if (classesManagement[index].status == "1") {
+            status = "Đang chờ";
+        } else if (classesManagement[index].status == "2") {
+            status = "Hoạt động";
         }
-        else if(classesManagement[index].status=="3"){
-            status= "Kết thúc";
+        else if (classesManagement[index].status == "3") {
+            status = "Kết thúc";
         }
         //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
         listClass.innerHTML += `
@@ -110,6 +110,8 @@ function renderDataClass(page) {
             </tr>
         `;
     }
+
+    renderCourseId();
 
 }
 function openDeleteClass(index) {
@@ -137,9 +139,9 @@ function openEditClass(index) {
     document.getElementById("editClassTeacher").value = classData.insertClassTeacher;
     document.getElementById("editClassNumber").value = classData.insertClassNumber;
     document.getElementById("editClassDescribe").value = classData.insertClassDescribe;
-   //
-    document.getElementById("floatingEditSelect")[classData.status-1].selected = true;
-  
+    //
+    document.getElementById("floatingEditSelect")[classData.status - 1].selected = true;
+
     $("#editClassModal").modal('show');
 }
 //tính tổng số trang
@@ -160,7 +162,7 @@ function createClass() {
         status: status
     };
 
-    if (!validateClassId(newClass.insertClassId) || !validateClassName(newClass.insertClassName)||!validateCourseId(newClass.insertCourseId)) {
+    if (!validateClassId(newClass.insertClassId) || !validateClassName(newClass.insertClassName) || !validateCourseId(newClass.insertCourseId)) {
         return;
     }
     //Thêm newClass vào classesManagement
@@ -172,30 +174,30 @@ function createClass() {
     renderClassData();
 }
 //validateCourseId
-function validateCourseId(insertCourseId){  //tu input truyen vao
-   for(let i=0; i<studentManagement.length;i++){
-                //trong localstorage 
-    if(studentManagement[i].courseId===insertCourseId){ 
-       return true;
+function validateCourseId(insertCourseId) {  //tu input truyen vao
+    for (let i = 0; i < studentManagement.length; i++) {
+        //trong localstorage 
+        if (studentManagement[i].courseId === insertCourseId) {
+            return true;
+        }
     }
-   }
-   alert("Mã khoá học không khớp.")
-   return false;
+    alert("Mã khoá học không khớp.")
+    return false;
 }
 
 //update
 function updateClass(event) {
     // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
     event.preventDefault();
-    classesManagement.forEach(function(classes){
-       if(classes.insertClassId == editClassId.value){
-        classes.insertCourseId == insertCourseId.value,
-        classes.insertClassName = editClassName.value, 
-        classes.insertClassTeacher = editClassTeacher.value, 
-        classes.insertClassNumber =  editClassNumber.value, 
-        classes.insertClassDescribe = editClassDescribe.value, 
-        classes.status = document.getElementById("floatingEditSelect").value;
-       }
+    classesManagement.forEach(function (classes) {
+        if (classes.insertClassId == editClassId.value) {
+            classes.insertCourseId == insertCourseId.value,
+                classes.insertClassName = editClassName.value,
+                classes.insertClassTeacher = editClassTeacher.value,
+                classes.insertClassNumber = editClassNumber.value,
+                classes.insertClassDescribe = editClassDescribe.value,
+                classes.status = document.getElementById("floatingEditSelect").value;
+        }
     })
 
     localStorage.setItem("classesManagement", JSON.stringify(classesManagement));
@@ -232,6 +234,15 @@ function validateClassId(insertClassId) {
     document.getElementById("insertClassId").style.backgroundColor = "";
     return true;
 }
+function renderCourseId() {
+    console.log("renderCourseId");
+    let studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+    let insertCourseId = document.getElementById("insertCourseId");
+    insertCourseId.innerHTML = "";
+    for (let i = 0; i < studentManagement.length; i++) {
+        insertCourseId.innerHTML += `<option value="${studentManagement[i].courseId}">${studentManagement[i].courseId}</option>`;
+    }
+}
 
 //Function validateClassName
 function validateClassName(insertClassName) {
@@ -244,6 +255,7 @@ function validateClassName(insertClassName) {
     document.getElementById("insertClassName").style.backgroundColor = "";
     return true;
 }
+
 
 //fuction reset ô input
 function resetFormClass() {
@@ -270,7 +282,7 @@ function renderClassData() {
     let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
     listClass.innerHTML = "";
     classesManagement.forEach((courseElement, index) => {
-        
+
         listClass.innerHTML += `
         <tr>
             <td>${index + 1}</td>
@@ -286,7 +298,7 @@ function renderClassData() {
                 <button class="btn btn-danger" id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
             </td>
         </tr>`
-        
+
 
     });
 
@@ -309,6 +321,6 @@ btnLogOut.addEventListener("click", function () {
     window.location.href = "login_page.html"
 
 })
- //ghi bay
+
 // Chạy hàm renderData khi trang được tải
 window.onload = renderDataClass(1);
