@@ -143,6 +143,8 @@ function createCourse() {
 
     resetForm();
     renderData(1);
+    // $("#myModal").modal('show');
+    let test=document.get
 }
 // click vào edit thì hiển thị all data trên form
 function initUpdate() {

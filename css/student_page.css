@@ -34,3 +34,35 @@ table{
 .form-check-inline {
     margin-right: 0rem !important;
 }
+label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 10px;
+    display: inline-block;
+}
+#floatingEditSelect {
+    width: 200px; 
+}
+#select{
+    margin-bottom: 10px; 
+    display: flex;
+    align-items: center; 
+}
+#courseSelect{
+    margin-bottom: 10px; 
+    display: flex;
+    align-items: center; 
+}
+#classSelect{
+    margin-bottom: 10px; 
+    display: flex;
+    align-items: center; 
+}
+.form-check-label{
+    margin-right: -60px;
+   
+}
+.form-floating{
+    margin-left: 34px;
+}

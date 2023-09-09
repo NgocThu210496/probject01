@@ -1,5 +1,6 @@
 const studentId = document.getElementById("studentId");
-const classId = document.getElementById("classId");
+const courseNameSelect = document.getElementById("courseNameSelect");
+const classNameSelect=document.getElementById("classNameSelect");
 const studentName = document.getElementById("studentName");
 const birthday = document.getElementById("birthday");
 const address = document.getElementById("address");
@@ -9,7 +10,7 @@ const sex = document.getElementById("Nam");
 
 const listStudent = document.getElementById("listStudent");
 const listPage = document.getElementById("listPage");
-const status = document.getElementById("floatingEditSelect"); 
+const floatingInsertSelect =document.getElementById("floatingInsertSelect");
 //Định nghĩa số dữ liệu trên trang
 const recordSperPage = 3;
 // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
@@ -75,7 +76,8 @@ function renderData(page) {
     if (indexTo > student.length) {
         indexTo = student.length;
     }
-    //listStudent.innerHTML = "";
+    
+    listStudent.innerHTML = "";
     for (let index = indexFrom; index < indexTo; index++) {
         var sex = student[index].sex ? 'Nam' : 'Nu';
         var status = "";
@@ -95,13 +97,13 @@ function renderData(page) {
             <tr>
                 <td>${index + 1}</td>
                 <td>${student[index].studentId}</td>
-                <td>${student[index].classId}</td>
+                <td>${student[index].courseNameSelect}</td>
+                <td>${student[index].classNameSelect}</td>
                 <td>${student[index].studentName}</td>
+                <td>${sex}</td>
                 <td>${student[index].birthday}</td>
                 <td>${student[index].address}</td>
-                <td>${student[index].phone}</td>
                 <td>${student[index].email}</td>
-                <td>${sex}</td>
                 <td>${status}</td>
                 <td>
                     <button class="btn btn-primary"id="btnStudentEdit_${index}" onClick="openEditStudent(${index})">Edit</button>
@@ -150,17 +152,17 @@ function getTotalPage() {
 // Function thực hiện thêm mới dữ liệu
 function createStudent() {
     const sex = Nam.checked;
-    const status = document.getElementById("floatingEditSelect").value;
+    const status = document.getElementById("floatingInsertSelect").value;
     const newStudent = {
         studentId: studentId.value,
-        classId: classId.value,
+        courseNameSelect: courseNameSelect.value,
+        classNameSelect: classNameSelect.value,
         studentName: studentName.value,
-        birthday: birthday.value,
-        studentName: studentName.value,
-        address: address.value,
-        phone: phone.value,
-        email: email.value,
         sex:sex,
+        birthday: birthday.value,
+        address: address.value,
+        email: email.value,
+        phone: phone.value,
         status: status
     };
 
