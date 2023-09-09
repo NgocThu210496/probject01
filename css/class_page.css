@@ -9,7 +9,7 @@ footer{
 table{
     margin-top: 40px;
 }
-#pagePagination{
+#pagePaginationClass{
     display: flex;
 }
 .form-control {

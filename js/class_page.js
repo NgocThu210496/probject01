@@ -30,34 +30,37 @@ const recordsPerPageClass = 4;
 let btnClassSearch = document.getElementById("btnClassSearch");
 btnClassSearch.addEventListener("click", function () {
     const searchInputValue = document.getElementById("classNameSearch");
-    let searchListCourse = [];
-    classesManagement.filter(function (element) {
+    let searchListClass = [];
+    let result =  classesManagement.filter(function (element) {
         let valueOfSearchInput = (searchInputValue.value)?.toLowerCase();
-        let valueOfclassesManagement = (element.courseName)?.toLowerCase();
-        if (valueOfclassesManagement?.includes(valueOfSearchInput)) {
-            searchListCourse.push(element);
-        }
+        let valueOfclassesManagement = (element.insertClassName)?.toLowerCase();
+        return valueOfclassesManagement?.includes(valueOfSearchInput)
+    })
         let listClass = document.getElementById("listClass");
         listClass.innerHTML = "";
-        searchlistClass.forEach((element, index) => {
+        result.forEach((element, index) => {
             listClass.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${element.courseId}</td>
-                <td>${element.courseName}</td>
-                <td>${element.courseTime}</td>
+                <td>${element.insertClassId}</td>
+                <td>${element.insertCourseId}</td>
+                <td>${element.insertClassName}</td>
+                <td>${element.insertClassDescribe}</td>
+                <td>${element.insertClassNumber}</td>
                 <td>Search</td>
-                <td>
-                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
-                    <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
-                </td>
+                <td>Search</td>
+                <td>Search</td>
+                // <td>
+                //     <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                //     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                // </td>
             </tr>
         `;
 
         })
 
+console.log("=>",searchInputValue)
 
-    })
 
 });
 
