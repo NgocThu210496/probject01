@@ -142,7 +142,6 @@ function openEditClass(index) {
     document.getElementById("editClassTeacher").value = classData.insertClassTeacher;
     document.getElementById("editClassNumber").value = classData.insertClassNumber;
     document.getElementById("editClassDescribe").value = classData.insertClassDescribe;
-    //
     document.getElementById("floatingEditSelect")[classData.status - 1].selected = true;
 
     $("#editClassModal").modal('show');

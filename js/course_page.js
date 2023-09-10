@@ -36,8 +36,8 @@ btnSearch.addEventListener("click", function(){
                 <td>${element.courseTime}</td>
                 <td>Active</td>
                 <td>
-                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
-                    <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#editModal" id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-danger"  data-toggle="modal" data-target="#deleteCourse" id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
                 </td>
             </tr>
         `;
@@ -144,7 +144,7 @@ function createCourse() {
     resetForm();
     renderData(1);
     // $("#myModal").modal('show');
-    let test=document.get
+    //let test=document.get
 }
 // click vào edit thì hiển thị all data trên form
 function initUpdate() {

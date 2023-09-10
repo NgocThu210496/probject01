@@ -86,7 +86,7 @@
 
                     <!-- Begin modal insert-->
                     <div class="modal" id="myModal">
-                        <div class="modal-dialog ">
+                        <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
@@ -105,10 +105,6 @@
                                             <label for="maKhoaHoc">Tên khoá học <span>(*)</span></label>
                                             <div class="form-floating">
                                                 <select class="form-select" id="courseNameSelect" aria-label="Floating label select example">
-                                                  <!-- <option value="1" >Đang học</option>
-                                                  <option value="2">Chờ lớp</option>
-                                                  <option value="3">Bảo lưu - Đình chỉ</option>
-                                                  <option value="4">Tốt nghiệp</option> -->
                                                 </select>
                                             </div>
                                         </div>
@@ -116,10 +112,7 @@
                                             <label for="trangThai">Tên lớp học:<span>(*)</span></label>
                                             <div class="form-floating">
                                                 <select class="form-select" id="classNameSelect" aria-label="Floating label select example">
-                                                  <!-- <option value="1" >Đang học</option>
-                                                  <option value="2">Chờ lớp</option>
-                                                  <option value="3">Bảo lưu - Đình chỉ</option>
-                                                  <option value="4">Tốt nghiệp</option> -->
+    
                                                 </select>
                                             </div>
                                         </div>
@@ -198,30 +191,63 @@
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
-                                    <form id="editCourseInfo">
+                                    <form id="courseInfo">
                                         <div class="form-group">
-                                            <label for="maKhoaHoc">Mã Khoá Học</label>
-                                            <input type="text" class="form-control" id="editCourseId" disabled>
+                                            <label for="maKhoaHoc">Mã Sinh Viên <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editStudentId" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="tenKhoaHoc">Tên Khoá Học</label>
-                                            <input type="text" class="form-control" id="editCourseName">
+                                            <label for="maKhoaHoc">Tên khoá học</label>
+                                            <input type="text" class="form-control" id="editCourseNameSelect" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="thoiGianHoc">Thời Gian Học</label>
-                                            <input type="text" class="form-control" id="editCourseTime">
+                                            <label for="maKhoaHoc">Tên Khoá học</label>
+                                            <input type="text" class="form-control" id="editClassNameSelect" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="trangThai">Trạng Thái:</label>
+                                            <label for="maKhoaHoc">Tên Sinh Viên <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editStudentName">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="trangThai">Giới tính:<span>(*)</span></label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="activeEdit"
+                                                <input class="form-check-input" type="radio" name="sex" id="Nam"
                                                     checked value="true">
-                                                <label class="form-check-label" for="hoatDong">Active</label>
+                                                <label class="form-check-label" for="hoatDong" class="male">Nam</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="inActive"
+                                                <input class="form-check-input" type="radio" name="sex" id="Nu"
                                                     value="false">
-                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
+                                                <label class="form-check-label" for="khongHoatDong"class="male">Nữ</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="maKhoaHoc">Năm sinh  <span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editBirthday">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tenKhoaHoc">Địa chỉ<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editAddress">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thoiGianHoc">Số điện thoại<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editPhone">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thoiGianHoc">Email<span>(*)</span></label>
+                                            <input type="text" class="form-control" id="editEmail">
+                                        </div>
+                                        
+                                        <div class="form-group" id="select">
+                                            <label for="trangThai">Trạng Thái:<span>(*)</span></label>
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingEdittSelect" aria-label="Floating label select example">
+                                                  <option value="1" >Đang học</option>
+                                                  <option value="2">Chờ lớp</option>
+                                                  <option value="3">Bảo lưu - Đình chỉ</option>
+                                                  <option value="4">Tốt nghiệp</option>
+                                                </select>
                                             </div>
 
                                         </div>
@@ -230,8 +256,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button form="editCourseInfo" type="submit" class="btn btn-primary"
-                                        id="btnSubmitEdit" onclick="updateCourse()">Update</button>
+                                    <button form="editCourseInfo" type="submit" class="btn btn-primary" id="btnSubmitEdit" data-bs-dismiss="modal" onclick="updateClass(event)">Update</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -241,7 +266,7 @@
                     <!-- End Modal Edit -->
 
                     <!-- Begin Modal Delete -->
-                    <div class="modal"id="deleteCourse">
+                    <div class="modal"id="deleteStudent">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -249,9 +274,9 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Bạn có chắc chắn muốn xóa khóa học có mã: <span id="deleteCourseId">
+                                <p>Bạn có chắc chắn muốn xóa khóa học có mã: <span id="deleteStudentId">
                                 </span> - <span
-                                    id="deleteCourseName"></span> không?</p>
+                                    id="deleteStudentName"></span> không?</p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButton">Delete</button>
