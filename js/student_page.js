@@ -32,26 +32,33 @@ let editEmail = document.getElementById("editEmail");
 let floatingEdittSelect = document.getElementById("floatingEdittSelect");
 
 //search 
+
 let btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", function(){
-    const searchInputValue = document.getElementById("courseNameSearch"); 
-    let searchListCourse = [];
-    studentManagement.filter(function(element){
-        let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
-        let valueOfStudentManagement = (element.courseName)?.toLowerCase();
-        if(valueOfStudentManagement?.includes(valueOfSearchInput)){
-            searchListCourse.push(element);
+    const studentNameSearch = document.getElementById("studentNameSearch"); 
+    let searchListStudent = [];//Mảng này sẽ chứa danh sách các khóa học được tìm thấy dựa trên tên nhập vào ô tìm kiếm.
+    student.filter(function(element){
+        let valueOfSearchInput = (studentNameSearch.value)?.toLowerCase(); 
+        let valueOfStudent = (element.studentName)?.toLowerCase();
+        if(valueOfStudent?.includes(valueOfSearchInput)){
+            searchListStudent.push(element);
         }
-        let listCourse=document.getElementById("listCourse");
-        listCourse.innerHTML="";
-        searchListCourse.forEach((element,index)=>{
-            listCourse.innerHTML += `
+        let listStudent=document.getElementById("listStudent");
+        listStudent.innerHTML="";
+        searchListStudent.forEach((element,index)=>{
+            listStudent.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${element.courseId}</td>
-                <td>${element.courseName}</td>
-                <td>${element.courseTime}</td>
-                <td>Search</td>
+                <td>${element.studentId}</td>
+                <td>${element.courseNameSelect}</td>
+                <td>${element.classNameSelect}</td>
+                <td>${element.studentName}</td>
+                <td>${element.sex}</td>
+                <td>${element.birthday}</td>
+                <td>${element.address}</td>
+                <td>${element.email}</td>
+                <td>${element.status}</td>
+                
                 <td>
                     <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
@@ -182,11 +189,9 @@ function validateClassId(studentId) {
     let indexFind = student.findIndex(element => element.studentId == studentId);
     if (indexFind >= 0) {
         //Đã tồn tại mã danh mục trong studentManagement
-        document.getElementById("studentId").style.backgroundColor = "green";
         alert("Mã danh mục đã tồn tại");
         return false;
     }
-    document.getElementById("studentId").style.backgroundColor = "green";
     return true;
 }
 //validateCourseNameSelect
@@ -266,7 +271,6 @@ student.forEach(function(element){
     
 })
 
-    console.log(student);
     // 3. Lưu mảng vào local storage
     localStorage.setItem("student", JSON.stringify(student));
     //resetForm();

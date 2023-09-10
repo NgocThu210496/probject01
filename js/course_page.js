@@ -245,6 +245,26 @@ document.getElementById("btnSubmit").addEventListener("click", function (event) 
 
 });
 
+//sắp xếp
+function handSortCourse() {
+    let sort = document.getElementById("sort").value;
+    //  Lấy listCourse từ studentManagement
+    var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+    switch (sort) {
+        case "courseNameASC":
+            // sắp xếp theo tên danh mục tăng dần: sử dụng hàm sort (tìm hiểu thêm)
+            studentManagement.sort((a, b) => (a.courseName > b.courseName) ? 1 : (a.courseName < b.courseName) ? -1 : 0);
+            break;
+        case "catalogNameDESC":
+            // Sắp xếp theo tên danh mục giảm dần
+            studentManagement.sort((a, b) => (a.courseName > b.courseName) ? -1 : (a.courseName < b.courseName) ? 1 : 0);
+            break;
+    }
+    // 4. set vào trong localStorage
+    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+    // 5. render Data
+    renderData(1);
+}
 // Chạy hàm renderData khi trang được tải
 window.onload = renderData(1);
 //logout

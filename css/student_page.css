@@ -9,6 +9,12 @@ footer{
 table{
     margin-top: 40px;
 }
+th{
+    white-space: nowrap;
+}
+td{
+white-space: nowrap;
+}
 #pagePagination{
     display: flex;
 }
