@@ -52,6 +52,8 @@ btnSearch.addEventListener("click", function(){
 
 // Function thực hiện render dữ liệu theo trang
 function renderData(page) {
+    //sap sep
+    let studentManagement=JSON.parse(localStorage.getItem("studentManagement"));
     // 1. Render danh sách trang
     const totalPage = getTotalPage();
     const pagePagination = document.getElementById("pagePagination");
@@ -253,11 +255,40 @@ function handSortCourse() {
     switch (sort) {
         case "courseNameASC":
             // sắp xếp theo tên danh mục tăng dần: sử dụng hàm sort (tìm hiểu thêm)
-            studentManagement.sort((a, b) => (a.courseName > b.courseName) ? 1 : (a.courseName < b.courseName) ? -1 : 0);
+            // studentManagement.sort((a, b) => (a.courseName < b.courseName))
+            // ? 1 : (a.courseName < b.courseName) ? -1 : 0);
+            studentManagement.sort((a, b) => {
+                const nameA = a.courseName.toLowerCase();
+                const nameB = b.courseName.toLowerCase();
+              
+                if (nameA < nameB) {
+                  return -1;
+                }
+                if (nameA > nameB) {
+                  return 1;
+                }
+                return 0;
+              });
+
+              
+           console.log("tang",studentManagement)
             break;
         case "catalogNameDESC":
+            studentManagement.sort((a, b) => {
+                const nameA = a.courseName.toLowerCase();
+                const nameB = b.courseName.toLowerCase();
+              
+                if (nameA > nameB) {
+                  return -1;
+                }
+                if (nameA < nameB) {
+                  return 1;
+                }
+                return 0;
+              });
+              console.log("giam",studentManagement)
             // Sắp xếp theo tên danh mục giảm dần
-            studentManagement.sort((a, b) => (a.courseName > b.courseName) ? -1 : (a.courseName < b.courseName) ? 1 : 0);
+            //studentManagement.sort((a, b) => (a.courseName > b.courseName) ? -1 : (a.courseName < b.courseName) ? 1 : 0);
             break;
     }
     // 4. set vào trong localStorage

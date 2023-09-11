@@ -38,7 +38,21 @@ btnClassSearch.addEventListener("click", function () {
     })
         let listClass = document.getElementById("listClass");
         listClass.innerHTML = "";
+        console.log("=>",result)
+
         result.forEach((element, index) => {
+            var status = "";
+        if(element.status=="1"){
+            status="Đang học";
+        }else if(element.status=="2"){
+            status= "Chờ lớp";
+        }
+        else if(element.status=="3"){
+            status= "Bảo lưu - Đình chỉ";
+        }
+        else if(element.status=="4"){
+            status= "Tốt nghiệp";
+        }
             listClass.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
@@ -48,10 +62,8 @@ btnClassSearch.addEventListener("click", function () {
                 <td>${element.insertClassTeacher}</td>
                 <td>${element.insertClassNumber}</td>
                 <td>${element.insertClassDescribe}</td>
-                
-                <td>Search</td>
-                <td>Search</td>
-                <td>Search</td>
+                <td>${status}</td>
+               
                <td>
                 <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
                 <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
@@ -60,8 +72,6 @@ btnClassSearch.addEventListener("click", function () {
         `;
 
         })
-
-console.log("=>",searchInputValue)
 
 
 });
