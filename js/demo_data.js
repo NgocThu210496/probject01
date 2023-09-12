@@ -137,10 +137,17 @@ let userSystem = [
         status: true//true: hoạt động - false: Đang bị khóa
     },
     {
+        email: "thanh@gmail.com",
+        password: "123456",
+        fullName: "Nguyễn Thành",
+        status: false//true: hoạt động - false: Đang bị khóa
+    },
+    {
+  
         email: "an@gmail.com",
         password: "123456",
-        fullName: "Nguyễn Quảng An",
-        status: false//true: hoạt động - false: Đang bị khóa
+        fullName: "Nguyễn Cảnh Dương",
+        status: false
     }
 ]
 localStorage.setItem("userSystem", JSON.stringify(userSystem));

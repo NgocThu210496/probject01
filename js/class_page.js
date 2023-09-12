@@ -13,6 +13,11 @@ const editClassNumber = document.getElementById("editClassNumber");
 const editClassDescribe = document.getElementById("editClassDescribe");
 const status = document.getElementById("floatingEditSelect");
 
+let classActive = [];  //Số lớp đang hoạt động
+let classClose = []; //Số lớp đã kết thúc
+let classPending = []; //Số lớp đang chờ
+
+
 
 const listClass = document.getElementById("listClass");
 const listPageClass = document.getElementById("listPageClass");
@@ -31,29 +36,29 @@ let btnClassSearch = document.getElementById("btnClassSearch");
 btnClassSearch.addEventListener("click", function () {
     const searchInputValue = document.getElementById("classNameSearch");
     let searchListClass = [];
-    let result =  classesManagement.filter(function (element) {
+    let result = classesManagement.filter(function (element) {
         let valueOfSearchInput = (searchInputValue.value)?.toLowerCase();
         let valueOfclassesManagement = (element.insertClassName)?.toLowerCase();
         return valueOfclassesManagement?.includes(valueOfSearchInput)
     })
-        let listClass = document.getElementById("listClass");
-        listClass.innerHTML = "";
-        console.log("=>",result)
+    let listClass = document.getElementById("listClass");
+    listClass.innerHTML = "";
+    console.log("=>", result)
 
-        result.forEach((element, index) => {
-            var status = "";
-        if(element.status=="1"){
-            status="Đang học";
-        }else if(element.status=="2"){
-            status= "Chờ lớp";
+    result.forEach((element, index) => {
+        var status = "";
+        if (element.status == "1") {
+            status = "Đang học";
+        } else if (element.status == "2") {
+            status = "Chờ lớp";
         }
-        else if(element.status=="3"){
-            status= "Bảo lưu - Đình chỉ";
+        else if (element.status == "3") {
+            status = "Bảo lưu - Đình chỉ";
         }
-        else if(element.status=="4"){
-            status= "Tốt nghiệp";
+        else if (element.status == "4") {
+            status = "Tốt nghiệp";
         }
-            listClass.innerHTML += `
+        listClass.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${element.insertClassId}</td>
@@ -71,14 +76,14 @@ btnClassSearch.addEventListener("click", function () {
             </tr>
         `;
 
-        })
+    })
 
 
 });
 
 // Function thực hiện render dữ liệu theo trang
 function renderDataClass(page) {
-    
+
     // 1. Render danh sách trang
     const totalPage = getTotalPageClass();
     const pagePaginationClass = document.getElementById("pagePaginationClass");
@@ -186,7 +191,38 @@ function createClass() {
 
     resetFormClass();
     renderClassData();
+    calculateSumOfClassActive();
+    calculateSumOfClassClose();
+    calculateSumOfclassPending();
 }
+
+//Lọc tất cả những phần tử theo các trạng thái: hoạt động, kết thúc và đang chờ 
+//1. Lọc ra phần tử có trạng thái là hoạt động 
+function calculateSumOfClassActive() {
+    classActive = classesManagement.filter((classes) => {
+        return classes.status == "2";
+    })
+    // console.log("Active",classActive.length)
+    localStorage.setItem("classActive", classActive.length);
+}
+//2. Lọc ra phần tử có trạng thái đã kết thúc 
+function calculateSumOfClassClose(){
+    classClose = classesManagement.filter((e)=>{
+        return e.status == "3";
+    })
+    // console.log("classClose: ", classClose);
+   localStorage.setItem("classClose",classClose.length);
+} 
+
+//3. Lọc ra phần tử có trạng thái đã dang cho
+function calculateSumOfclassPending(){
+    classPending = classesManagement.filter((item)=>{
+        return item.status == "1";
+    })
+    //  console.log("classPending: ", classPending);
+ localStorage.setItem("classPending",classPending.length);
+} 
+
 //validateCourseId
 function validateCourseId(insertCourseId) {  //tu input truyen vao
     for (let i = 0; i < studentManagement.length; i++) {
@@ -215,9 +251,13 @@ function updateClass(event) {
     })
 
     localStorage.setItem("classesManagement", JSON.stringify(classesManagement));
+
     // window.onload = renderDataClass(1);
     resetFormClassEdit();
     renderDataClass(1)
+    calculateSumOfClassActive();
+    calculateSumOfClassClose();
+    calculateSumOfclassPending();
 
 }
 
@@ -278,7 +318,7 @@ function resetFormClass() {
     document.getElementById("insertClassTeacher").value = "";
     document.getElementById("insertClassNumber").value = "";
     document.getElementById("insertClassDescribe").value = "";
-    document.getElementById("active").checked = true;
+    //document.getElementById("active").checked = true
 
 }
 function resetFormClassEdit() {

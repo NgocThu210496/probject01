@@ -83,7 +83,7 @@ function renderData(page) {
                 <td>${studentManagement[index].courseTime}</td>
                 <td>${status}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-warning" style="color: white;" id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
                 </td>
             </tr>

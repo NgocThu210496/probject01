@@ -8,8 +8,8 @@ const listPage = document.getElementById("listPage");
 
 //Định nghĩa số dữ liệu trên trang
 const recordSperPage = 3;
-// Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+// Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng userSystem
+let userSystem = JSON.parse(localStorage.getItem("userSystem")) || [];
 // Định nghĩa số dữ liệu trên mỗi trang
 const recordsPerPage = 3;
 
@@ -19,14 +19,14 @@ let btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", function(){
     const searchInputValue = document.getElementById("courseNameSearch"); 
     let searchListCourse = [];
-    studentManagement.filter(function(element){
+    userSystem.filter(function(element){
         let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
-        let valueOfStudentManagement = (element.courseName)?.toLowerCase();
-        if(valueOfStudentManagement?.includes(valueOfSearchInput)){
+        let valueOfuserSystem = (element.courseName)?.toLowerCase();
+        if(valueOfuserSystem?.includes(valueOfSearchInput)){
             searchListCourse.push(element);
         }
-        let listCourse=document.getElementById("listCourse");
-        listCourse.innerHTML="";
+        let listAccount=document.getElementById("listAccount");
+        listAccount.innerHTML="";
         searchListCourse.forEach((element,index)=>{
             listCourse.innerHTML += `
             <tr>
@@ -66,23 +66,23 @@ function renderData(page) {
     // 2. Render dữ liệu của page trên table
     let indexFrom = (page - 1) * recordsPerPage;
     let indexTo = page * recordsPerPage;
-    if (indexTo > studentManagement.length) {
-        indexTo = studentManagement.length;
+    if (indexTo > userSystem.length) {
+        indexTo = userSystem.length;
     }
-    listCourse.innerHTML = "";
+    listAccount.innerHTML = "";
     for (let index = indexFrom; index < indexTo; index++) {
-        const status = studentManagement[index].status ? 'Active' : 'Inactive';
+        const status = userSystem[index].status ? 'unlock' : 'lock';
         //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
-        listCourse.innerHTML += `
+        listAccount.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td>${studentManagement[index].courseId}</td>
-                <td>${studentManagement[index].courseName}</td>
-                <td>${studentManagement[index].courseTime}</td>
+                <td>${userSystem[index].email}</td>
+                <td>${userSystem[index].password}</td>
+                <td>${userSystem[index].fullName}</td>
                 <td>${status}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
-                    <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
+                    <button class="btn btn-primary"id="btnunLockAccount_${index}" onClick="unlockAccount(${index})">Mở khóa</button>
+                    <button class="btn btn-danger"id="btnLockAccount_${index}" onClick="lockAccount(${index})">Khóa</button>
                 </td>
             </tr>
         `;
@@ -90,7 +90,7 @@ function renderData(page) {
 
 }
 function openDeleteCourse(index) {
-    const deleteCourseData = studentManagement[index];
+    const deleteCourseData = userSystem[index];
     document.getElementById("deleteCourseId").innerHTML = deleteCourseData.courseId;
     document.getElementById("deleteCourseName").innerHTML = deleteCourseData.courseName;
     $("#deleteCourse").modal('show')
@@ -101,14 +101,14 @@ let confirmDeleteButton = document.getElementById("confirmDeleteButton");
 confirmDeleteButton.addEventListener("click", function () {
 
     let deleteCourseId = document.getElementById("deleteCourseId").innerHTML;
-    studentManagement = studentManagement.filter(element => element.courseId != deleteCourseId)
-    // Lưu đè studentManagement vào localStorage
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+    userSystem = userSystem.filter(element => element.courseId != deleteCourseId)
+    // Lưu đè userSystem vào localStorage
+    localStorage.setItem("userSystem", JSON.stringify(userSystem));
     renderData(1);
 })
 function openEditCourse(index) {
     // Lấy dữ liệu từ hàng tương ứng và điền vào modal chỉnh sửa
-    const courseData = studentManagement[index];
+    const courseData = userSystem[index];
     document.getElementById("editCourseId").value = courseData.courseId;
     document.getElementById("editCourseName").value = courseData.courseName;
     document.getElementById("editCourseTime").value = courseData.courseTime;
@@ -120,7 +120,7 @@ function openEditCourse(index) {
 }
 //tính tổng số trang
 function getTotalPage() {
-    return Math.ceil(studentManagement.length / recordSperPage)
+    return Math.ceil(userSystem.length / recordSperPage)
 
 }
 // Function thực hiện thêm mới dữ liệu
@@ -136,25 +136,25 @@ function createCourse() {
     if (!validateCourseId(newCourse.courseId) || !validateCourseName(newCourse.courseName)) {
         return;
     }
-    //Thêm newCourse vào studentManagement
-    studentManagement.push(newCourse);
-    // Lưu đè studentManagement vào localStorage
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+    //Thêm newCourse vào userSystem
+    userSystem.push(newCourse);
+    // Lưu đè userSystem vào localStorage
+    localStorage.setItem("userSystem", JSON.stringify(userSystem));
 
     resetForm();
     renderData(1);
 }
 // click vào edit thì hiển thị all data trên form
 function initUpdate() {
-    // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-    const studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+    // Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng userSystem
+    const userSystem = JSON.parse(localStorage.getItem("userSystem")) || [];
     // Lấy thông tin danh mục cần cập nhật
-    let index = getClassId(studentManagement, courseId);//Chỉ số phần tử sinh viên cần cập nhật
+    let index = getClassId(userSystem, courseId);//Chỉ số phần tử sinh viên cần cập nhật
     // Hiển thị thông tin danh mục cần cập nhật lên Input Form
-    document.getElementById("courseId").value = studentManagement[index].courseId;
-    document.getElementById("courseName").value = studentManagement[index].courseName;
-    document.getElementById("courseTime").value = studentManagement[index].courseTime;
-    if (studentManagement[index].status == "active") {
+    document.getElementById("courseId").value = userSystem[index].courseId;
+    document.getElementById("courseName").value = userSystem[index].courseName;
+    document.getElementById("courseTime").value = userSystem[index].courseTime;
+    if (userSystem[index].status == "active") {
         document.getElementById("active").checked = true;
     } else {
         document.getElementById("inActive").checked = true;
@@ -168,23 +168,23 @@ function updateCourse() {
 
     // 1. Lấy thông tin khoá học trên form
     let courseUpdate = getDataCourse();
-    // 2. Cập nhật thông tin course vào studentManagement
-    let indexUpdate = getCourseId(studentManagement, courseUpdate.courseId);
-    studentManagement[indexUpdate] = courseUpdate;
+    // 2. Cập nhật thông tin course vào userSystem
+    let indexUpdate = getCourseId(userSystem, courseUpdate.courseId);
+    userSystem[indexUpdate] = courseUpdate;
     // 3. Lưu mảng vào local storage
-    localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+    localStorage.setItem("userSystem", JSON.stringify(userSystem));
     resetForm();
 }
 
-for (let index = 0; index < studentManagement.length; index++) {
+for (let index = 0; index < userSystem.length; index++) {
     const editButton = document.getElementById(`btnCourseEdit_${index}`);
     const deleteButton = document.getElementById(`btnCourseDelete_${index}`)
 
 };
 // Hàm lấy thông tin danh mục theo mã danh mục
-function getCourseId(studentManagement, courseId) {
-    for (let index = 0; index < studentManagement.length; index++) {
-        if (studentManagement[index].courseId == courseId) {
+function getCourseId(userSystem, courseId) {
+    for (let index = 0; index < userSystem.length; index++) {
+        if (userSystem[index].courseId == courseId) {
             return index;
         }
     }
@@ -193,9 +193,9 @@ function getCourseId(studentManagement, courseId) {
 
 // Các function validateCourseId
 function validateCourseId(courseId) {
-    let indexFind = studentManagement.findIndex(element => element.courseId == courseId);
+    let indexFind = userSystem.findIndex(element => element.courseId == courseId);
     if (indexFind >= 0) {
-        //Đã tồn tại mã danh mục trong studentManagement
+        //Đã tồn tại mã danh mục trong userSystem
         document.getElementById("courseId").style.backgroundColor = "yellow";
         alert("Mã danh mục đã tồn tại");
         return false;
@@ -206,7 +206,7 @@ function validateCourseId(courseId) {
 
 //Function validateCourseName
 function validateCourseName(courseName) {
-    let indexFind = studentManagement.findIndex(element => element.courseName == courseName);
+    let indexFind = userSystem.findIndex(element => element.courseName == courseName);
     if (indexFind >= 0) {
         document.getElementById("courseName").style.backgroundColor = "yellow";
         alert("Tên danh mục đã tồn tại");
@@ -236,12 +236,12 @@ function getDataCourse() {
     return course;
 }
 
-// Thêm sự kiện click cho nút Submit
-document.getElementById("btnSubmit").addEventListener("click", function (event) {
-    event.preventDefault();
-    createCourse();
+// // Thêm sự kiện click cho nút Submit
+// document.getElementById("btnSubmit").addEventListener("click", function (event) {
+//     event.preventDefault();
+//     createCourse();
 
-});
+// });
 
 // Chạy hàm renderData khi trang được tải
 window.onload = renderData(1);

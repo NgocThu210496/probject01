@@ -94,7 +94,7 @@
                             <div class="modal-content">
                                 <!-- Modal Header -->
                                 <div class="modal-header">
-                                    <h4 class="modal-title">Chỉnh sửa thông tin khóa học</h4>
+                                    <h4 class="modal-title">Chỉnh sửa thông tin Tài khoản</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
@@ -166,7 +166,7 @@
 
                     <!-- Begin Seaarch -->
                     <div class="col-md-3">
-                        <input type="text" id="courseNameSearch" class="form-control" placeholder="Tìm kiếm">
+                        <input type="text" id="accountNameSearch" class="form-control" placeholder="Nhập tài khoản tìm kiếm">
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-primary" id="btnSearch">Tìm Kiếm</button>
@@ -176,12 +176,12 @@
                     <!--Begin Arrange -->
                     <div class="col-md-5 d-inline-block">
                         <label for="sort">Sắp Xếp:</label>
-                        <select class="form-control" id="sort" onchange="handSortCourse()">
-                            <option value="">Lựa chọn</option>
-                            <option value="courseNameASC">Course Name ASC</option>
-                            <option value="courseNameDESC">Course Name DESC</option>
-                            <option value="priorityASC">Priority ASC</option>
-                            <option value="priorityDESC">Priority DESC</option>
+                        <select class="form-control" id="sort" onchange="sortAccount()">
+                            <option value="" selected>Lựa chọn</option>
+                            <option value="accountEmailASC">Email Tài khoản Tăng Dần</option>
+                            <option value="accountEmailDESC">Email Tài khoản Giảm Dần</option>
+                            <option value="statusASC">Trạng thái Tài khoản Tăng Dần</option>
+                            <option value="statusDESC">Trạng thái Tài khoản Giảm Dần</option>
                         </select>
                     </div>
                      <!--End Arrange -->
@@ -192,14 +192,14 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Mã khóa học</th>
-                                    <th scope="col">Tên khóa học</th>
-                                    <th scope="col">Thời gian (giờ)</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Mật khẩu</th>
+                                    <th scope="col">Họ Tên</th>
                                     <th scope="col">Trạng thái</th>
                                     <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
-                            <tbody id="listCourse">
+                            <tbody id="listAccount">
                                 <!-- Table rows here -->
                                 <!-- <tr>
                                     <td>1</td>
@@ -246,7 +246,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/course_page.js"></script>
+    <script src="../js/account_page.js"></script>
+    <script src="../js/demo_data.js"></script>
    
 </body>
 

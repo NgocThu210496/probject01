@@ -23,3 +23,6 @@ footer{
 .list-group-item>a{
     color: white;
 }
+.row{
+    justify-content: center;
+}
