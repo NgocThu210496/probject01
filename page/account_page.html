@@ -82,106 +82,63 @@
                 <div class="d-flex justify-content-evenly">
                   
 
-                    <!-- Begin modal insert-->
+                    <!-- Begin modal Lock-->
                     
-
-                    <!-- End modal insert-->
-
-                    <!-- Begin Modal Edit -->
-                    
-                    <div class="modal" id="editModal">
-                        <div class="modal-dialog ">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Chỉnh sửa thông tin Tài khoản</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                                    <form id="editCourseInfo">
-                                        <div class="form-group">
-                                            <label for="maKhoaHoc">Mã Khoá Học</label>
-                                            <input type="text" class="form-control" id="editCourseId" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tenKhoaHoc">Tên Khoá Học</label>
-                                            <input type="text" class="form-control" id="editCourseName">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="thoiGianHoc">Thời Gian Học</label>
-                                            <input type="text" class="form-control" id="editCourseTime">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="trangThai">Trạng Thái:</label>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="activeEdit"
-                                                    checked value="true">
-                                                <label class="form-check-label" for="hoatDong">Active</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="status" id="inActive"
-                                                    value="false">
-                                                <label class="form-check-label" for="khongHoatDong">InActive</label>
-                                            </div>
-
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button form="editCourseInfo" type="submit" class="btn btn-primary"
-                                        id="btnSubmitEdit" onclick="updateCourse()">Update</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <!-- End Modal Edit -->
-
-                    <!-- Begin Modal Delete -->
-                    <div class="modal"id="deleteCourse">
+                    <div class="modal"id="lockModal">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title">Xóa khóa học</h5>
+                              <h5 class="modal-title">Xác nhận khóa tài khoản</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <p>Bạn có chắc chắn muốn xóa khóa học có mã: <span id="deleteCourseId">
-                                </span> - <span
-                                    id="deleteCourseName"></span> không?</p>
-                            </div>
+                            <div class="modal-body">Bạn có chắc muốn khóa tài khoản này không ?</div>
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButton">Delete</button>
-                              <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmLock">Khóa</button>
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="cancelLock">Hủy</button>
                             </div>
                           </div>
                         </div>
                       </div>
-                    <!-- End Modal Delete -->
+                    <!-- End modal Lock-->
+
+                    <!-- Begin Modal unLock -->
+                    <div class="modal"id="unlockModal">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Xác nhận mở khóa tài khoản</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Bạn có chắc muốn mở khóa tài khoản này  không ?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmUnlock">Mở</button>
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="cancelUnlock">Hủy</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- End Modal unLock -->
 
                     <!-- Begin Seaarch -->
                     <div class="col-md-3">
                         <input type="text" id="accountNameSearch" class="form-control" placeholder="Nhập tài khoản tìm kiếm">
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnSearch">Tìm Kiếm</button>
+                        <button class="btn btn-primary" id="btnSearch"id="button-addon1">Tìm Kiếm</button>
                     </div>
                     <!-- End Seaarch -->
 
                     <!--Begin Arrange -->
                     <div class="col-md-5 d-inline-block">
-                        <label for="sort">Sắp Xếp:</label>
-                        <select class="form-control" id="sort" onchange="sortAccount()">
+                        <label for="sort" for="inputGroupSelect02">Sắp Xếp:</label>
+                        <select class="form-control" id="sort" onchange="sortAccount()" id="inputGroupSelect02">
                             <option value="" selected>Lựa chọn</option>
                             <option value="accountEmailASC">Email Tài khoản Tăng Dần</option>
                             <option value="accountEmailDESC">Email Tài khoản Giảm Dần</option>
-                            <option value="statusASC">Trạng thái Tài khoản Tăng Dần</option>
-                            <option value="statusDESC">Trạng thái Tài khoản Giảm Dần</option>
+                            <!-- <option value="statusASC">Trạng thái Tài khoản Tăng Dần</option>
+                            <option value="statusDESC">Trạng thái Tài khoản Giảm Dần</option> -->
                         </select>
                     </div>
                      <!--End Arrange -->
@@ -235,7 +192,7 @@
             </main>
         </div>
     </div>
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="bg-dark text-white text-center py-3 d-none">
         <div class="container">
             <p>Copyright Rikkei Academy @2023.</p>
         </div>

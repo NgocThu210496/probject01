@@ -8,19 +8,6 @@ const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 const sex = document.getElementById("Nam");
 
-const listStudent = document.getElementById("listStudent");
-const listPage = document.getElementById("listPage");
-const floatingInsertSelect =document.getElementById("floatingInsertSelect");
-//Định nghĩa số dữ liệu trên trang
-const recordSperPage = 3;
-// Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
-var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
-let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
-let student = JSON.parse(localStorage.getItem("student")) || [];
-// Định nghĩa số dữ liệu trên mỗi trang
-const recordsPerPage = 3;
-
-//
 let editStudentId=document.getElementById("editStudentId");
 let editCourseNameSelect=document.getElementById("editCourseNameSelect");
 let editClassNameSelect =document.getElementById("editClassNameSelect");
@@ -31,8 +18,34 @@ let editPhone = document.getElementById("editPhone");
 let editEmail = document.getElementById("editEmail");
 let floatingEdittSelect = document.getElementById("floatingEdittSelect");
 
-//search 
+const listStudent = document.getElementById("listStudent");
+const listPage = document.getElementById("listPage");
+const floatingInsertSelect =document.getElementById("floatingInsertSelect");
 
+const arrStudentStudying = [];
+const studentPending = [];
+const studentReserve = []; //bao luu
+const studentGraduate = []; //tot nghiep
+
+//Định nghĩa số dữ liệu trên trang
+const recordSperPage = 3;
+// Lấy dữ liệu từ localStorage, nếu null thì khởi tạo mảng studentManagement
+var studentManagement = JSON.parse(localStorage.getItem("studentManagement")) || [];
+let classesManagement = JSON.parse(localStorage.getItem("classesManagement")) || [];
+let student = JSON.parse(localStorage.getItem("student")) || [];
+// Định nghĩa số dữ liệu trên mỗi trang
+const recordsPerPage = 3;
+
+//1. Lọc ra phần tử có trạng thái là dang hoc
+function calculateSumOfarrStudentStudying() {
+    arrStudentStudying = student.filter((item) => {
+        return item.status == "1";
+    })
+    console.log("Active",arrStudentStudying.length)
+    // localStorage.setItem("studentStudying", studentStudying.length);
+}
+
+//search 
 let btnSearch = document.getElementById("btnSearch");
 btnSearch.addEventListener("click", function(){
     const studentNameSearch = document.getElementById("studentNameSearch"); 
@@ -46,21 +59,20 @@ btnSearch.addEventListener("click", function(){
         let listStudent=document.getElementById("listStudent");
         listStudent.innerHTML="";
         searchListStudent.forEach((element,index)=>{
+            // <td>${element.sex}</td>
+            // <td>${element.birthday}</td>
+            // <td>${element.address}</td>
             listStudent.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${element.studentId}</td>
-                <td>${element.courseNameSelect}</td>
-                <td>${element.classNameSelect}</td>
                 <td>${element.studentName}</td>
-                <td>${element.sex}</td>
-                <td>${element.birthday}</td>
-                <td>${element.address}</td>
                 <td>${element.email}</td>
                 <td>${element.status}</td>
-                
+                <td>${element.classNameSelect}</td>
+                <td>${element.courseNameSelect}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
+                    <button class="btn btn-warning"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
                 </td>
             </tr>
@@ -110,20 +122,20 @@ function renderData(page) {
             status= "Tốt nghiệp";
         }
         //  tạo ra các id động, cho phép bạn dễ dàng xác định nút được nhấp vào
+        // <td>${sex}</td>
+        //         <td>${student[index].birthday}</td>
+        //         <td>${student[index].address}</td>
         listStudent.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${student[index].studentId}</td>
-                <td>${student[index].courseNameSelect}</td>
-                <td>${student[index].classNameSelect}</td>
                 <td>${student[index].studentName}</td>
-                <td>${sex}</td>
-                <td>${student[index].birthday}</td>
-                <td>${student[index].address}</td>
                 <td>${student[index].email}</td>
                 <td>${status}</td>
+                <td>${student[index].classNameSelect}</td>
+                <td>${student[index].courseNameSelect}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnStudentEdit_${index}" onClick="openEditStudent(${index})">Edit</button>
+                    <button class="btn btn-warning" style="color: white;" id="btnStudentEdit_${index}" onClick="openEditStudent(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnStudentDelete_${index}" onClick="openDeleteStudent(${index})">Delete</button>
                 </td>
             </tr>
@@ -183,6 +195,7 @@ function createStudent() {
 
     resetForm();
     renderData(1);
+    calculateSumOfStudentStudying();
 }
 // Các function validateStudentId
 function validateClassId(studentId) {
@@ -276,7 +289,8 @@ student.forEach(function(element){
     //resetForm();
     
     renderData(1)
-    resetForm()
+    resetForm();
+    calculateSumOfStudentStudying();
 }
 
 //fuction reset ô input

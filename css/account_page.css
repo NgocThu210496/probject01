@@ -1,6 +1,9 @@
 html,body{
     height: 100%;
 }
+body{
+    background: #EEEEEE;
+}
 footer{
     position: absolute;
     width: 100vw;

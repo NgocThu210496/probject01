@@ -1,6 +1,6 @@
 //Các dữ liệu cần lưu trữ trong localStorage theo cấu trúc sau
 //Thông tin khóa học, lớp, sinh viên
-let studentManagement = [
+var studentManagement = [
     //course Object
     {
         courseId: "RA01",
@@ -119,38 +119,40 @@ let studentManagement = [
         ]
     }
 ]
-localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
+
 //Thông tin đăng nhập
 //item: userLogin:email
 //Thông tin tài khoản hệ thống
-let userSystem = [
+let SystemUser = [
     {
         email: "admin@gmail.com",
         password: "123456",
-        fullName: "Nguyễn văn admin",
+        fullname: "Nguyễn văn admin",
         status: true//true: hoạt động - false: Đang bị khóa
     },
     {
         email: "quangnd@gmail.com",
         password: "123456",
-        fullName: "Nguyễn Duy Quang",
+        fullname: "Nguyễn Duy Quang",
         status: true//true: hoạt động - false: Đang bị khóa
     },
     {
         email: "thanh@gmail.com",
         password: "123456",
-        fullName: "Nguyễn Thành",
+        fullname: "Nguyễn Thành",
         status: false//true: hoạt động - false: Đang bị khóa
     },
     {
   
         email: "an@gmail.com",
         password: "123456",
-        fullName: "Nguyễn Cảnh Dương",
+        fullname: "Nguyễn Cảnh Dương",
         status: false
     }
 ]
-localStorage.setItem("userSystem", JSON.stringify(userSystem));
+localStorage.setItem("userSystem", JSON.stringify(SystemUser));
+
+localStorage.setItem("studentManagement", JSON.stringify(studentManagement));
 
 
 

@@ -48,7 +48,7 @@
 
     <div class="container mt-4">
         <div class="row">
-            <nav class="col-md-2">
+            <nav class="col-md-3">
                 <ul class="list-group">
                     <li class="list-group-item">
                         <a href="home_page.html" class="text-decoration-none" id="homePage">Bảng điều khiển</a>
@@ -70,7 +70,7 @@
                     </li>
                 </ul>
             </nav>
-            <main class="col-md-10">
+            <main class="col-md-9">
                 <div class="row mb-3">
                     <div class="col-md-12 text-center">
                         <h2>QUẢN LÝ SINH VIÊN</h2>
@@ -104,32 +104,35 @@
                                             
                                         </div>
                                         <div class="form-group" id="courseSelect">
-                                            <label for="maKhoaHoc">Tên khoá học <span>(*)</span></label>
-                                            <div class="form-floating">
-                                                <select class="form-select" id="courseNameSelect" aria-label="Floating label select example">
-                                                </select>
+                                            <div class="col-md-4"><label for="maKhoaHoc">Tên khoá học</label> <span>(*)</span></div>
+                                            <div class="col-md-8">
+                                                
+                                                <select class="form-select" id="courseNameSelect" aria-label="Floating label select example"></select>
+                                                
                                             </div>
                                         </div>
                                         <div class="form-group"id="classSelect">
-                                            <label for="trangThai">Tên lớp học:<span>(*)</span></label>
-                                            <div class="form-floating">
+                                            <div class="col-md-4"><label for="trangThai">Tên lớp học</label> <span>(*)</span></div>
+                                            <div class="col-md-8">
                                                 <select class="form-select" id="classNameSelect" aria-label="Floating label select example">
     
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="maKhoaHoc">Tên Sinh Viên <span>(*)</span></label>
+                                            <div class="col-md-4"> <label for="maKhoaHoc">Tên Sinh Viên </label><span>(*)</span></div>
+                                            <div class="col-md-8">
                                             <input type="text" class="form-control" id="studentName">
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="trangThai">Giới tính:<span>(*)</span></label>
-                                            <div class="form-check form-check-inline">
+                                            <div class="col-md-4"><label for="trangThai">Giới tính:</label><span>(*)</span></div>
+                                            <div class="col-md-8">
                                                 <input class="form-check-input" type="radio" name="sex" id="Nam"
                                                     checked value="true">
                                                 <label class="form-check-label" for="hoatDong" class="male">Nam</label>
                                             </div>
-                                            <div class="form-check form-check-inline">
+                                            <div class="col-md-8">
                                                 <input class="form-check-input" type="radio" name="sex" id="Nu"
                                                     value="false">
                                                 <label class="form-check-label" for="khongHoatDong"class="male">Nữ</label>
@@ -170,7 +173,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button form="courseInfo" type="submit" class="btn btn-primary"
+                                    <button form="courseInfo" type="submit" class="btn btn-success"
                                         id="btnSubmit"data-dismiss="modal">Save</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                 </div>
@@ -203,7 +206,7 @@
                                             <input type="text" class="form-control" id="editCourseNameSelect" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="maKhoaHoc">Tên Khoá học</label>
+                                            <label for="maKhoaHoc">Tên lớp học</label>
                                             <input type="text" class="form-control" id="editClassNameSelect" disabled>
                                         </div>
                                         <div class="form-group">
@@ -258,7 +261,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button form="editCourseInfo" type="submit" class="btn btn-primary" id="btnSubmitEdit" data-bs-dismiss="modal" onclick="updateClass(event)">Update</button>
+                                    <button form="editCourseInfo" type="submit" class="btn btn-warning" style="color: white;" id="btnSubmitEdit" data-bs-dismiss="modal" onclick="updateClass(event)">Update</button>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -282,7 +285,7 @@
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="confirmDeleteButton">Delete</button>
-                              <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Cancel</button>
+                              <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cancel</button>
                             </div>
                           </div>
                         </div>
@@ -318,14 +321,14 @@
                                 <tr>
                                     <th scope="col">STT</th>
                                     <th scope="col">Mã SV</th>
-                                    <th scope="col">Tên khoá học</th>
-                                    <th scope="col">Tên lớp học</th>
                                     <th scope="col">Tên SV</th>
-                                    <th scope="col">Giới tính</th>
-                                    <th scope="col">Năm sinh</th>
-                                    <th scope="col">Địa chỉ</th>
+                                    <!-- <th scope="col">Giới tính</th> -->
+                                    <!-- <th scope="col">Năm sinh</th> -->
+                                    <!-- <th scope="col">Địa chỉ</th> -->
                                     <th scope="col">Email</th>
                                     <th scope="col">Trạng thái</th>
+                                    <th scope="col">Tên lớp học</th>
+                                    <th scope="col">Tên khoá học</th>
                                     <th scope="col">Hành động</th>
                                 </tr>
                             </thead>

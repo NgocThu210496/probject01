@@ -124,7 +124,7 @@ function renderDataClass(page) {
                 <td>${classesManagement[index].insertClassDescribe}</td>
                 <td>${status}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
+                    <button class="btn btn-warning" style="color: white;" id="btnClassEdit_${index}" onClick="openEditClass(${index})">Edit</button>
                     <button class="btn btn-danger"id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
                 </td>
             </tr>
@@ -348,7 +348,7 @@ function renderClassData() {
             <td>${courseElement.insertClassNumber}</td>
             <td>${courseElement.status}</td>
             <td>
-                <button class="btn btn-primary" data-bs-target="editClassModal" id="btnClassEdit_${index}" onClick="openEditClass('${index}')">Edit</button>
+                <button class="btn btn-warning" style="color: white;" data-bs-target="editClassModal" id="btnClassEdit_${index}" onClick="openEditClass('${index}')">Edit</button>
                 <button class="btn btn-danger" id="btnClassDelete_${index}" onClick="openDeleteClass(${index})">Delete</button>
             </td>
         </tr>`

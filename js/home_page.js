@@ -5,6 +5,7 @@ let student = JSON.parse(localStorage.getItem("student")) || [];
 let classActive = JSON.parse(localStorage.getItem("classActive")) || [];
 let classClose=JSON.parse(localStorage.getItem("classClose"))||[];
 let classPending=JSON.parse(localStorage.getItem("classPending"))||[];
+let arrStudentStudying=JSON.parse(localStorage.getItem("arrStudentStudying"))||[];
 
 //id show ket qua trong home_page.htlm
 const statisticalCourse = document.getElementById("statisticalCourse");
@@ -13,6 +14,7 @@ const statisticsStudent = document.getElementById("statisticsStudent");
 const statisticsClassActive = document.getElementById("statisticsClassActive");
 const statisticsClassClose =document.getElementById("statisticsClassClose");
 const statisticsClassPending=document.getElementById("statisticsClassPending");
+const studentStudying=document.getElementById("studentStudying");
 
 //tra ve sum tren bang dieu khien
 statisticalCourse.innerHTML = studentManagement.length;
@@ -21,6 +23,7 @@ statisticsStudent.innerHTML = student.length;
 statisticsClassActive.innerHTML = classActive;
 statisticsClassClose.innerHTML=classClose;
 statisticsClassPending.innerHTML=classPending;
+studentStudying.innerHTML=arrStudentStudying;
 
 //  console.log("classClose",classClose);
 
