@@ -22,10 +22,10 @@ const listStudent = document.getElementById("listStudent");
 const listPage = document.getElementById("listPage");
 const floatingInsertSelect =document.getElementById("floatingInsertSelect");
 
-const arrStudentStudying = [];
-const studentPending = [];
-const studentReserve = []; //bao luu
-const studentGraduate = []; //tot nghiep
+let arrStudentStudying = [];
+let studentPending = [];
+let studentReserve = []; //bao luu
+let studentGraduate = []; //tot nghiep
 
 //Định nghĩa số dữ liệu trên trang
 const recordSperPage = 3;
@@ -37,12 +37,12 @@ let student = JSON.parse(localStorage.getItem("student")) || [];
 const recordsPerPage = 3;
 
 //1. Lọc ra phần tử có trạng thái là dang hoc
-function calculateSumOfarrStudentStudying() {
-    arrStudentStudying = student.filter((item) => {
-        return item.status == "1";
+function calculateSumOfStudentStudying() {
+    arrStudentStudying = student.filter((classes) => {
+        return classes.status == "2";
     })
-    console.log("Active",arrStudentStudying.length)
-    // localStorage.setItem("studentStudying", studentStudying.length);
+     //console.log("arrStudentStudying.length",arrStudentStudying.length)
+    localStorage.setItem("arrStudentStudying", arrStudentStudying.length);
 }
 
 //search 

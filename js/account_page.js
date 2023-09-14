@@ -5,6 +5,7 @@
 
 const listAccount = document.getElementById("listAccount");
 const listPage = document.getElementById("listPage");
+let accountSetBlockOrUnBlock = "";
 
 //Định nghĩa số dữ liệu trên trang
 const recordSperPage = 3;
@@ -85,7 +86,7 @@ function renderData(page) {
                 <td>${userSystem[index].fullname}</td>
                 <td>${status}</td>
                 <td>
-                    <button class="btn btn-primary"id="btnunLockAccount_${index}" onClick="unlockAccount(${index})">Mở khóa</button>
+                    <button class="btn btn-primary"id="btnunLockAccount_${index}" onClick="unlockAccount('${userSystem[index].email}')">Mở khóa</button>
                     <button class="btn btn-danger"id="btnLockAccount_${index}" onClick="lockAccount(${index})">Khóa</button>
                 </td>
             </tr>
@@ -123,13 +124,23 @@ var confirmUnlock = document.getElementById("confirmUnlock");
 var cancelUnlock = document.getElementById("cancelUnlock");
 var userEmailToUnlock = null;
 let unlockAccount = (email) => {
-
+    accountSetBlockOrUnBlock = email;
+   
     userEmailToUnlock = email; // Lưu email của người dùng cần khóa
     unlockModal.style.display = "block"; // Hiển thị modal
 }
 confirmUnlock.addEventListener("click", () => {
     let userSystem = localStorage.getItem("userSystem") ? JSON.parse(localStorage.getItem("userSystem")) : [];
-    console.log("userSystem: ", userSystem);
+    let accountUnblock = []
+    userSystem.forEach((account)=>{
+        if(account.email == accountSetBlockOrUnBlock){
+           account.status = false
+        }
+    })
+
+    localStorage.setItem("userSystem", JSON.stringify(userSystem));
+  
+    //console.log("accountSetBlockOrUnBlock: ",  accountSetBlockOrUnBlock);
     let index = indexOfCourseId(userSystem, userEmailToUnlock);
     // userSystem[index].status = true;
     localStorage.setItem("userSystem", JSON.stringify(userSystem));

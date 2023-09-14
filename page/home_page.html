@@ -27,25 +27,26 @@
             <h1 class="h4">HỆ THỐNG QUẢN LÝ SINH VIÊN RIKKEI</h1>
             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logout">Đăng Xuất</button>
             <!-- Begin modal logout -->
-            <div class="modal" tabindex="-1" id="logout"aria-hidden="true">
+            <div class="modal" tabindex="-2" id="logout" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Xác nhận đăng xuất</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <p>Bạn muốn đăng xuất khỏi hệ thống?</p>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" id="btnLogOut" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
-                        <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">No</button>
-                      </div>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Xác nhận đăng xuất</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn muốn đăng xuất khỏi hệ thống?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btnLogOut" class="btn btn-danger"
+                                data-bs-dismiss="modal">Yes</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        </div>
                     </div>
-                  </div>
-              </div>
-             <!-- End modal logout -->
-             
+                </div>
+            </div>
+            <!-- End modal logout -->
+            
         </div>
     </header>
 
@@ -57,16 +58,19 @@
                         <a href="home_page.html" class="text-decoration-none" id="homePage">Bảng điều khiển</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="course_page.html" class="text-decoration-none active" id="courseManagement">Quản lý khóa học</a>
+                        <a href="course_page.html" class="text-decoration-none active" id="courseManagement">Quản lý
+                            khóa học</a>
                     </li>
                     <li class="list-group-item">
                         <a href="class_page.html" class="text-decoration-none" id="classManagement">Quản lý lớp học</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="student_page.html" class="text-decoration-none" id="studentManagement">Quản lý sinh viên</a>
+                        <a href="student_page.html" class="text-decoration-none" id="studentManagement">Quản lý sinh
+                            viên</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="account_page.html" class="text-decoration-none" id="accountManagement">Quản lý tài khoản</a>
+                        <a href="account_page.html" class="text-decoration-none" id="accountManagement">Quản lý tài
+                            khoản</a>
                     </li>
                 </ul>
             </nav>
@@ -96,12 +100,12 @@
                                 </tr>
                                 <tr>
                                     <td>Số lớp đã kết thúc</td>
-                                    <th scope="col" id="statisticsClassClose"></th>
+                                    <th scope="col" id="statisticsClassClose">0</th>
                                 </tr>
                                 <tr>
-                                  
+
                                     <td>Số lớp đang chờ</td>
-                                    <th scope="col" id="statisticsClassPending"></th>
+                                    <th scope="col" id="statisticsClassPending">0</th>
                                 </tr>
 
                                 <!--End Thống kê lớp học -->
@@ -109,23 +113,23 @@
                                 <tr>
                                     <th scope="row" rowspan="5">Thống kê sinh viên</th>
                                     <td>Tổng số SV</td>
-                                    <th scope="col" id="statisticsStudent"></th>
+                                    <th scope="col" id="statisticsStudent">0</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV chờ lớp</td>
-                                    <th scope="col" id="statisticsStudentPending"></th>
+                                    <th scope="col" id="statisticsStudentPending">0</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV đang học</td>
-                                    <th scope="col" id="studentStudying"></th>
+                                    <th scope="col" id="studentStudying">0</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV bảo lưu/đình chỉ</td>
-                                    <th scope="col" id="statisticReserve"></th>
+                                    <th scope="col" id="statisticReserve">0</th>
                                 </tr>
                                 <tr>
                                     <td>Số SV tốt nghiệp</td>
-                                    <th scope="col" id="statisticGraduate"></th>
+                                    <th scope="col" id="statisticGraduate">0</th>
                                 </tr>
                                 <!--End Thống kê sinh viên -->
                             </tbody>
@@ -146,7 +150,7 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="../js/home_page.js"></script>
-    <script src="../js/demo_data.js"></script>
+    <!-- <script src="../js/demo_data.js"></script> -->
 </body>
 
 </html>

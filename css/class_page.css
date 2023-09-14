@@ -58,3 +58,6 @@ table{
 .row{
     justify-content: center;
 }
+main{
+    box-shadow: 1px 1px 5px rgba(180, 171, 171, 0.5);
+}
