@@ -19,42 +19,6 @@ function getTotalPage() {
     return Math.ceil(userSystem.length / recordSperPage)
 
 }
-//search 
-// let btnSearch = document.getElementById("btnSearch");
-// btnSearch.addEventListener("click", function(){
-//     const searchInputValue = document.getElementById("courseNameSearch"); 
-//     let searchListCourse = [];
-//     userSystem.filter(function(element){
-//         let valueOfSearchInput = (searchInputValue.value)?.toLowerCase(); 
-//         let valueOfuserSystem = (element.courseName)?.toLowerCase();
-//         if(valueOfuserSystem?.includes(valueOfSearchInput)){
-//             searchListCourse.push(element);
-//         }
-//         let listAccount=document.getElementById("listAccount");
-//         listAccount.innerHTML="";
-//         searchListCourse.forEach((element,index)=>{
-//             listCourse.innerHTML += `
-//             <tr>
-//                 <td>${index + 1}</td>
-//                 <td>${element.courseId}</td>
-//                 <td>${element.courseName}</td>
-//                 <td>${element.courseTime}</td>
-//                 <td>Search</td>
-//                 <td>
-//                     <button class="btn btn-primary"id="btnCourseEdit_${index}" onClick="openEditCourse(${index})">Edit</button>
-//                     <button class="btn btn-danger"id="btnCourseDelete_${index}" onClick="openDeleteCourse(${index})">Delete</button>
-//                 </td>
-//             </tr>
-//         `;
-
-//         })
-        
-
-//     })
-    
-// });
-
-
 // Function thực hiện render dữ liệu theo trang
 function renderData(page) {
     // 1. Render danh sách trang
